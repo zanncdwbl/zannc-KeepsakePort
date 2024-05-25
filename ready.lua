@@ -27,7 +27,7 @@ function CreateKeepsake_Order()
             Gift = "PiercedButterflyKeepsake"
         },
         InheritFrom = { "DefaultGiftData" },
-        -- Name = "Thanatos",
+        Name = "PiercedButterflyKeepsake"
         -- Locked = 5,
         -- Value = 0,
         -- Maximum = 8
@@ -48,28 +48,78 @@ function CreateKeepsake_Order()
     -- print("\n\n\n\n\n")
 end
 
+-- function CreateKeepsake_Data()
+-- 	game.TraitSetData.Keepsakes.PiercedButterflyKeepsake = 
+-- 	{
+-- 		InheritFrom = { "GiftTrait" },
+-- 		InRackTitle = "PiercedButterflyKeepsake_Rack",
+-- 		Icon = "Keepsake_10",
+-- 		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
+-- 		PriorityDisplay = true,
+-- 		LowHealthThresholdText =
+-- 		{
+-- 			-- Display variable only, to change the data value change the value below under "LowHealthThreshold"
+-- 			Threshold = 30,
+-- 			Text = "Hint_Thanatos",
+-- 		},
+-- 		AddOutgoingCritModifiers =
+-- 		{
+-- 			LowHealthThreshold = 30,
+-- 			LowHealthChance = { BaseValue = 0.2 },
+-- 			ReportValues = { ReportedHealthThreshold = "LowHealthThreshold", ReportedCritBonus = "LowHealthChance"}
+-- 		},
+-- 		ExtractValues =
+-- 		{
+-- 			{
+-- 				Key = "ReportedHealthThreshold",
+-- 				ExtractAs = "Health",
+-- 			},
+-- 			{
+-- 				Key = "ReportedCritBonus",
+-- 				ExtractAs = "Chance",
+-- 				Format = "Percent",
+-- 			},
+-- 		},
+-- 		SignOffData =
+-- 		{
+-- 		  {
+-- 			Text = "SignoffThanatos",
+-- 		  },
+-- 		},
+-- 	}
+--     OverwriteTableKeys(game.TraitData, game.TraitSetData.Keepsakes)
+--     print("printing trait data keepsakes")
+--     printTable(game.TraitSetData.Keepsakes.PiercedButterflyKeepsake)
+--     print("=============================================")
+--     print("DONE TRAIT DATA KEEPSAKES")
+--     print("=============================================")
+
+--     printTable(game.TraitData)
+--     print("=============================================")
+--     print("DONE TRAIT DATA")
+--     print("=============================================")
+-- end
+
 function CreateKeepsake_Data()
-	game.TraitSetData.Keepsakes.PiercedButterflyKeepsake = 
-	{
+	local newKeepsakeData = {
 		InheritFrom = { "GiftTrait" },
 		InRackTitle = "PiercedButterflyKeepsake_Rack",
 		Icon = "Keepsake_10",
-		EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
+        ShowInHUD = true,
+        Name = "PiercedButterflyKeepsake",
+		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
 		PriorityDisplay = true,
-		LowHealthThresholdText =
-		{
+		LowHealthThresholdText = {
 			-- Display variable only, to change the data value change the value below under "LowHealthThreshold"
 			Threshold = 30,
-			Text = "Hint_LowHealthDamageTrait",
+			Text = "Hint_Thanatos",
 		},
-		AddOutgoingCritModifiers =
-		{
+		AddOutgoingCritModifiers = {
 			LowHealthThreshold = 30,
 			LowHealthChance = { BaseValue = 0.2 },
-			ReportValues = { ReportedHealthThreshold = "LowHealthThreshold", ReportedCritBonus = "LowHealthChance"}
+			ReportValues = { ReportedHealthThreshold = "LowHealthThreshold", ReportedCritBonus = "LowHealthChance" }
 		},
-		ExtractValues =
-		{
+		ExtractValues = {
 			{
 				Key = "ReportedHealthThreshold",
 				ExtractAs = "Health",
@@ -80,60 +130,33 @@ function CreateKeepsake_Data()
 				Format = "Percent",
 			},
 		},
+        CustomRarityLevels = {
+            "TraitLevel_Keepsake1",
+            "TraitLevel_Keepsake2",
+            "TraitLevel_Keepsake3",
+            "TraitLevel_Keepsake4",
+        },
 
-		EquipVoiceLines =
-		{
-			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				SuccessiveChanceToPlay = 0.2,
-				Cooldowns =
-				{
-					{ Name = "MelinoeAnyQuipSpeech" },
-				},
+        RarityLevels = {
+            Common = { Multiplier = 1.0 },
+            Rare = { Multiplier = 1.25 },
+            Epic = { Multiplier = 1.5 },
+            Heroic = { Multiplier = 2.0 }
+        },
 
-				{ Cue = "/VO/Melinoe_2651", Text = "The Antler." },
-			},
+        ChamberThresholds = { 25, 50 },
+
+		SignOffData = {
 			{
-				PreLineWait = 0.3,
-				BreakIfPlayed = true,
-				RandomRemaining = true,
-				ChanceToPlay = 0.25,
-				Source = { LineHistoryName = "NPC_Artemis_Field_01", SubtitleColor = Color.ArtemisVoice },
-				GameStateRequirements =
-				{
-					{
-						Path = { "GameState", "TextLinesRecord" },
-						HasAll = { "ArtemisGift02" },
-					},
-				},
-				Cooldowns =
-				{
-					{ Name = "KeepsakeGiverSpeechPlayedRecently", Time = 90 },
-				},
-				{ Cue = "/VO/ArtemisKeepsake_0214", Text = "Hey Sister." },
-				{ Cue = "/VO/ArtemisKeepsake_0215", Text = "Melinoë.", PlayFirst = true },
+				Text = "SignoffThanatos",
 			},
-			[3] = GlobalVoiceLines.AwardSelectedVoiceLines,
-		},
-		SignOffData =
-		{
-		  {
-			Text = "SignoffThanatos",
-		  },
 		},
 	}
-    OverwriteTableKeys(game.TraitData, game.TraitSetData.Keepsakes)
-    -- print("printing trait data keepsakes")
-    -- printTable(game.TraitSetData.Keepsakes.PiercedButterflyKeepsake)
-    -- print("=============================================")
-    -- print("DONE TRAIT DATA KEEPSAKES")
-    -- print("=============================================")
-
-    -- printTable(game.TraitData)
-    -- print("=============================================")
-    -- print("DONE TRAIT DATA")
-    -- print("=============================================")
+	-- Inject the new keepsake data into TraitSetData.Keepsakes
+	game.TraitSetData.Keepsakes.PiercedButterflyKeepsake = newKeepsakeData
+	
+	-- Overwrite TraitData with the updated Keepsakes
+	OverwriteTableKeys(game.TraitData, game.TraitSetData.Keepsakes)
 end
 
 CreateKeepsake_Order()

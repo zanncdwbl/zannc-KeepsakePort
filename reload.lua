@@ -1,0 +1,5 @@
+    print("printing trait data keepsakes")
+    printTable(game.TraitSetData.Keepsakes)
+    print("=============================================")
+    print("DONE TRAIT DATA KEEPSAKES")
+    print("=============================================")
