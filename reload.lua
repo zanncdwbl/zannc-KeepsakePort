@@ -3,10 +3,15 @@ function CreateKeepsake_Order()
     
     game.GiftData.NPC_Thanatos_01 = {
         [1] = {
+            GameStateRequirements = {
+                {
+					PathTrue = { "GameState", "TextLinesRecord", "ArtemisGift01" },
+				},
+            },
             Gift = "PerfectClearDamageBonusKeepsake"
         },
         InheritFrom = { "DefaultGiftData" },
-        Name = "NPC_Thanatos_01"
+        Name = "PerfectClearDamageBonusKeepsake"
     }
 end
 
@@ -64,6 +69,12 @@ function CreateKeepsake_Data()
         },
 
         ChamberThresholds = { 25, 50 },
+        HideInRunHistory = true,
+        Slot = "Keepsake",
+        InfoBackingAnimation = "KeepsakeSlotBase",
+        RecordCacheOnEquip = true,
+        TraitOrderingValueCache = -1,
+        ActiveSlotOffsetIndex =  0,
 
 		SignOffData = {
 			{
@@ -88,33 +99,52 @@ function StartEncounterEffects_wrap( base, currentRun )
     end
 end
 
--- function EndEncouterEffects_wrap( base, args )
---     if not game.currentRoom.BlockClearRewards then
---         for k, traitData in pairs(currentRun.Hero.Traits) do
---             if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
---                 traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
---                 PerfectClearTraitSuccessPresentation( traitData )
---                 game.CurrentRun.CurrentRoom.PerfectEncounterCleared = true
---                 CheckAchievement( { Name = "AchBuffedButterfly", CurrentValue = traitData.AccumulatedDamageBonus } )
---             end
---         end
---     end
--- end
+function EndEncouterEffects_wrap( base, args )
+    if not game.currentRoom.BlockClearRewards then
+        for k, traitData in pairs(currentRun.Hero.Traits) do
+            if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
+                traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
+                PerfectClearTraitSuccessPresentation( traitData )
+                game.CurrentRun.CurrentRoom.PerfectEncounterCleared = true
+                CheckAchievement( { Name = "AchBuffedButterfly", CurrentValue = traitData.AccumulatedDamageBonus } )
+            end
+        end
+    end
+end
 
--- function CheckOnRoomClearTraits_wrap( base, args )
--- 	if not game.currentRoom.BlockClearRewards and not game.currentEncounter.ProcessedOnRoomClear then
--- 		game.currentEncounter.ProcessedOnRoomClear = true
--- 		for k, traitData in pairs(game.currentRun.Hero.Traits) do
--- 			if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
--- 				traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
--- 				PerfectClearTraitSuccessPresentation( traitData )
--- 				CurrentRun.CurrentRoom.PerfectEncounterCleared = true
--- 			end
---         end
---     end
--- end
+function CheckOnRoomClearTraits_wrap( base, args )
+	if not game.currentRoom.BlockClearRewards and not game.currentEncounter.ProcessedOnRoomClear then
+		game.currentEncounter.ProcessedOnRoomClear = true
+		for k, traitData in pairs(game.currentRun.Hero.Traits) do
+			if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
+				traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
+				PerfectClearTraitSuccessPresentation( traitData )
+				CurrentRun.CurrentRoom.PerfectEncounterCleared = true
+			end
+        end
+    end
+end
 
 -- function PerfectClearTraitStartPresentation( traitData )
 -- 	-- PlaySound({ Name = "/EmptyCue" })
 -- 	TraitUIActivateTrait( traitData )
 -- end
+
+function printTable(tbl, indent)
+    indent = indent or 0
+    local formatting = string.rep("  ", indent)
+    for k, v in pairs(tbl) do
+        if type(v) == "table" then
+            print(formatting .. k .. ":")
+            printTable(v, indent + 1)
+        else
+            print(formatting .. k .. ": " .. tostring(v))
+        end
+    end
+end
+
+print("printing trait data keepsakes")
+printTable(game.TraitData.PerfectClearDamageBonusKeepsake)
+print("=============================================")
+print("DONE TRAIT DATA KEEPSAKES")
+print("=============================================")

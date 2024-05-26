@@ -19,11 +19,25 @@ local signoff = sjson.to_object({
     DisplayName = "From Thanatos",
 }, order)
 
+local clear = sjson.to_object({
+    Id = "PerfectClearDamageBonus",
+    DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}",
+}, order)
+
+function sjson_clearText(data)
+	for _,v in ipairs(data.Texts) do
+		if v.Id == 'PerfectClearDamageBonus' then
+			v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
+			break
+		end
+	end
+end
+
 sjson.hook(file, function(data)
-    print("Hook fired")
     table.insert(data.Texts, keepsake)
     table.insert(data.Texts, signoff)
-    print("Hook Done")
+    table.insert(data.Texts, clear)
+    return sjson_clearText(data)
 end)
 
 -- {
