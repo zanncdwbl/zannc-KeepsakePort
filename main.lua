@@ -41,6 +41,7 @@ local function on_ready()
     if config.enabled == false then return end
     
     import_as_fallback(rom.game)
+    import 'sjson.lua'
     import 'ready.lua'
 end
 
