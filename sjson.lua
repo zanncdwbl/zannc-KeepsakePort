@@ -1,4 +1,5 @@
 local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
+local helpfile = rom.path.combine(rom.paths.Content, 'Game/Text/en/HelpText.en.sjson')
 -- local iconfile = rom.path.combine(rom.paths.Content, 'Game/Animations/GUIAnimations.sjson')
 
 local order = {
@@ -15,6 +16,12 @@ local iconorder = {
 }
 
 local keepsake = sjson.to_object({
+    Id = "PerfectClearDamageBonusKeepsake_Tray",
+    InheritFrom = "PerfectClearDamageBonusKeepsake",
+    Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
+}, order)
+
+local keepsakerack = sjson.to_object({
     Id = "PerfectClearDamageBonusKeepsake",
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pierced Butterfly",
@@ -48,7 +55,11 @@ end
 
 sjson.hook(file, function(data)
     table.insert(data.Texts, keepsake)
+    table.insert(data.Texts, keepsakerack)
     table.insert(data.Texts, signoff)
     table.insert(data.Texts, clear)
+end)
+
+sjson.hook(helpfile, function (data)
     return sjson_clearText(data)
 end)

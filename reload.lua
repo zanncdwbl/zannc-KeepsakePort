@@ -18,10 +18,11 @@ end
 function CreateKeepsake_Data()
 	game.TraitData.PerfectClearDamageBonusKeepsake = {
 		InheritFrom = { "GiftTrait" },
-		InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
+        Name = "PerfectClearDamageBonusKeepsake",
+		-- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
+		CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
 		Icon = "Keepsake_01",
         ShowInHUD = true,
-        Name = "PerfectClearDamageBonusKeepsake",
 		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
 		PriorityDisplay = true,
         NoFrame = true,
