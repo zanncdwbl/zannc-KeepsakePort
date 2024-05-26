@@ -1,6 +1,11 @@
 ---@meta _
 ---@diagnostic disable: lowercase-global
 
+-- local package = "zannc-KeepsakePort"
+-- modutil.mod.Path.Wrap("SetupMap", function()
+--     LoadPackages({Names = package})
+-- end)
+
 modutil.mod.Path.Wrap("StartEncounterEffects", function( base, currentRun )
     base(currentRun)
     return StartEncounterEffects_wrap( base, currentRun )

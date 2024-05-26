@@ -34,8 +34,7 @@ reload = mods['SGG_Modding-ReLoad']
 
 ---@module 'KeepsakePort-zannc-config'
 config = chalk.auto 'config.lua'
--- ^ this updates our `.cfg` file in the config folder!
-public.config = config -- so other mods can access our config
+public.config = config
 
 local function on_ready()
     if config.enabled == false then return end
@@ -43,18 +42,18 @@ local function on_ready()
     import_as_fallback(rom.game)
     import 'sjson.lua'
     import 'ready.lua'
+
+    local package = "zannc-KeepsakePort"
+    LoadPackages({Names = package})
 end
 
 local function on_reload()
-    -- what to do when we are ready, but also again on every reload.
-    -- only do things that are safe to run over and over.
     import_as_fallback(rom.game)
     import 'reload.lua'
 end
--- this allows us to limit certain functions to not be reloaded.
+
 local loader = reload.auto_single()
 
--- this runs only when modutil and the game's lua is ready
 modutil.on_ready_final(function()
 	loader.load(on_ready, on_reload)
 end)

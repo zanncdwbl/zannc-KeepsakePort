@@ -19,7 +19,7 @@ function CreateKeepsake_Data()
 	game.TraitData.PerfectClearDamageBonusKeepsake = {
 		InheritFrom = { "GiftTrait" },
 		InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
-		Icon = "Keepsake_10",
+		Icon = "Keepsake_01",
         ShowInHUD = true,
         Name = "PerfectClearDamageBonusKeepsake",
 		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
@@ -69,6 +69,7 @@ function CreateKeepsake_Data()
         },
 
         ChamberThresholds = { 25, 50 },
+
         HideInRunHistory = true,
         Slot = "Keepsake",
         InfoBackingAnimation = "KeepsakeSlotBase",
@@ -129,22 +130,3 @@ end
 -- 	-- PlaySound({ Name = "/EmptyCue" })
 -- 	TraitUIActivateTrait( traitData )
 -- end
-
-function printTable(tbl, indent)
-    indent = indent or 0
-    local formatting = string.rep("  ", indent)
-    for k, v in pairs(tbl) do
-        if type(v) == "table" then
-            print(formatting .. k .. ":")
-            printTable(v, indent + 1)
-        else
-            print(formatting .. k .. ": " .. tostring(v))
-        end
-    end
-end
-
-print("printing trait data keepsakes")
-printTable(game.TraitData.PerfectClearDamageBonusKeepsake)
-print("=============================================")
-print("DONE TRAIT DATA KEEPSAKES")
-print("=============================================")
