@@ -1,16 +1,23 @@
 local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
 
-local keepsake = {
+local order = {
+    'Id',
+    'InheritFrom',
+    'DisplayName',
+    'Description',
+}
+
+local keepsake = sjson.to_object({
     Id = "PerfectClearDamageBonusKeepsake",
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pierced Butterfly",
     Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
-}
+}, order)
 
-local signoff = {
+local signoff = sjson.to_object({
     Id = "SignoffThanatos",
     DisplayName = "From Thanatos",
-}
+}, order)
 
 sjson.hook(file, function(data)
     print("Hook fired")

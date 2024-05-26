@@ -3,20 +3,15 @@ function CreateKeepsake_Order()
     
     game.GiftData.NPC_Thanatos_01 = {
         [1] = {
-            GameStateRequirements = {
-                {
-					PathTrue = { "GameState", "TextLinesRecord", "ArtemisGift01" },
-				},
-            },
             Gift = "PerfectClearDamageBonusKeepsake"
         },
         InheritFrom = { "DefaultGiftData" },
-        Name = "PerfectClearDamageBonusKeepsake"
+        Name = "NPC_Thanatos_01"
     }
 end
 
 function CreateKeepsake_Data()
-	game.TraitSetData.Keepsakes.PerfectClearDamageBonusKeepsake = {
+	game.TraitData.PerfectClearDamageBonusKeepsake = {
 		InheritFrom = { "GiftTrait" },
 		InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
 		Icon = "Keepsake_10",
@@ -77,10 +72,9 @@ function CreateKeepsake_Data()
 		},
 	}
 
-	OverwriteTableKeys(game.TraitData, game.TraitSetData.Keepsakes)
+	-- OverwriteTableKeys(game.TraitData, game.TraitSetData.Keepsakes)
 end
 
-print("istg if you print first")
 CreateKeepsake_Order()
 CreateKeepsake_Data()
 
