@@ -1,16 +1,3 @@
-function printTable(tbl, indent)
-    indent = indent or 0
-    local formatting = string.rep("  ", indent)
-    for k, v in pairs(tbl) do
-        if type(v) == "table" then
-            print(formatting .. k .. ":")
-            printTable(v, indent + 1)
-        else
-            print(formatting .. k .. ": " .. tostring(v))
-        end
-    end
-end
-
 function CreateKeepsake_Order()
     table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
     
