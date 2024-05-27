@@ -82,13 +82,17 @@ sjson.hook(helpfile, function (data)
     return sjson_clearText(data)
 end)
 
+-- =================================================
+--                    ICONS
+-- =================================================
+
 local keepsakeicon = sjson.to_object({
     Name = "Keepsake_Butterfly",
     InheritFrom = "KeepsakeIcon",
-    -- FilePath = "../Ship/ReturnOfModding/plugins/zannc-KeepsakePort/icons/img/zannc-KeepsakePort/Keepsake_Butterfly"
+    
+    -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
     FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
 }, iconorder)
-print(keepsakeicon.FilePath)
 
 sjson.hook(iconfile, function (data)
     table.insert(data.Animations, keepsakeicon)
