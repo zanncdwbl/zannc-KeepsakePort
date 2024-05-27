@@ -50,6 +50,20 @@ function CreateKeepsake_Data()
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
 
+        CustomRarityLevels = {
+            "TraitLevel_Keepsake1",
+            "TraitLevel_Keepsake2",
+            "TraitLevel_Keepsake3",
+            "TraitLevel_Keepsake4",
+        },
+
+        RarityLevels = {
+            Common = { Multiplier = 1.0 },
+            Rare = { Multiplier = 1.5 },
+            Epic = { Multiplier = 2.0 },
+            Heroic = { Multiplier = 3.0 },
+        },
+
         PerfectClearDamageBonus =
 		{
 			BaseValue = 1.01,
@@ -77,20 +91,6 @@ function CreateKeepsake_Data()
 				DecimalPlaces = 1,
 			},
 		},
-
-        CustomRarityLevels = {
-            "TraitLevel_Keepsake1",
-            "TraitLevel_Keepsake2",
-            "TraitLevel_Keepsake3",
-            "TraitLevel_Keepsake4",
-        },
-
-        RarityLevels = {
-            Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 1.5 },
-            Epic = { Multiplier = 2.0 },
-            Heroic = { Multiplier = 3.0 },
-        },
 
 		SignOffData = {
 			{
