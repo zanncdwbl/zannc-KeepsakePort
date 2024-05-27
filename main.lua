@@ -43,8 +43,8 @@ local function on_ready()
     import 'sjson.lua'
     import 'ready.lua'
 
-    local package = "zannc-KeepsakePort"
-    LoadPackages({Names = package})
+    -- local package = "zannc-KeepsakePort"
+    -- LoadPackages({Names = package})
 end
 
 local function on_reload()
