@@ -1,0 +1,31 @@
+{
+    "name": "bin\\Win\\Atlases\\zannc-KeepsakePort0",
+    "version": 4,
+    "subAtlases": [{
+        "name": "zannc-KeepsakePort\\Keepsake_Butterfly",
+        "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 175,
+            "height": 175
+        },
+        "topLeft": {
+            "x": 0,
+            "y": 0
+        },
+        "originalSize": {
+            "x": 175,
+            "y": 175
+        },
+        "scaleRatio": {
+            "x": 1.0,
+            "y": 1.0
+        },
+        "isMulti": false,
+        "isMip": false,
+        "isAlpha8": false,
+        "hull": []
+    }],
+    "isReference": true,
+    "referencedTextureName": "bin\\Win\\Atlases\\zannc-KeepsakePort0"
+}

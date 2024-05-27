@@ -1,6 +1,6 @@
 local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
 local helpfile = rom.path.combine(rom.paths.Content, 'Game/Text/en/HelpText.en.sjson')
--- local iconfile = rom.path.combine(rom.paths.Content, 'Game/Animations/GUIAnimations.sjson')
+local iconfile = rom.path.combine(rom.paths.Content, 'Game/Animations/GUIAnimations.sjson')
 
 -- Order for TraitText SJSON
 local order = {
@@ -10,11 +10,11 @@ local order = {
     'Description',
 }
 
--- local iconorder = {
---     'Name',
---     'InheritFrom',
---     'FilePath',
--- }
+local iconorder = {
+    'Name',
+    'InheritFrom',
+    'FilePath',
+}
 
 -- =================================================
 --                     Thanatos
@@ -86,13 +86,14 @@ end)
 --     Icon Hooks - DON'T WORK UNTIL PACKAGES DO
 -- =================================================
 
--- local keepsakeicon = sjson.to_object({
---     Name = "Keepsake_Butterfly",
---     InheritFrom = "KeepsakeIcon",
---     FilePath = "plugins/zannc-KeepsakePort/icons/img/zannc-KeepsakePort/Keepsake_Butterfly"
--- }, iconorder)
+local keepsakeicon = sjson.to_object({
+    Name = "Keepsake_Butterfly",
+    InheritFrom = "KeepsakeIcon",
+    -- FilePath = "../Ship/ReturnOfModding/plugins/zannc-KeepsakePort/icons/img/zannc-KeepsakePort/Keepsake_Butterfly"
+    FilePath = "zannc-KeepsakePort/Keepsake_Butterfly"
+}, iconorder)
 
--- sjson.hook(iconfile, function (data)
---     table.insert(data.Animations, keepsakeicon)
---     -- print(sjson.encode(data))
--- end)
+sjson.hook(iconfile, function (data)
+    table.insert(data.Animations, keepsakeicon)
+    -- print(sjson.encode(data))
+end)

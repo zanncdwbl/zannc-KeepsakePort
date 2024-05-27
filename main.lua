@@ -42,9 +42,6 @@ local function on_ready()
     import_as_fallback(rom.game)
     import 'sjson.lua'
     import 'ready.lua'
-
-    -- local package = "zannc-KeepsakePort"
-    -- LoadPackages({Names = package})
 end
 
 local function on_reload()
