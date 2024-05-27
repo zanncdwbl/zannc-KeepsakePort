@@ -37,7 +37,7 @@ function CreateKeepsake_Data()
         Name = "PerfectClearDamageBonusKeepsake",
 		-- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
 		CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
-		Icon = "Keepsake_01",
+		Icon = "Keepsake_Butterfly",
         ShowInHUD = true,
 		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
 		PriorityDisplay = true,

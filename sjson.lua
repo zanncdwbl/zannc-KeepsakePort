@@ -82,16 +82,13 @@ sjson.hook(helpfile, function (data)
     return sjson_clearText(data)
 end)
 
--- =================================================
---     Icon Hooks - DON'T WORK UNTIL PACKAGES DO
--- =================================================
-
 local keepsakeicon = sjson.to_object({
     Name = "Keepsake_Butterfly",
     InheritFrom = "KeepsakeIcon",
     -- FilePath = "../Ship/ReturnOfModding/plugins/zannc-KeepsakePort/icons/img/zannc-KeepsakePort/Keepsake_Butterfly"
-    FilePath = "zannc-KeepsakePort/Keepsake_Butterfly"
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
 }, iconorder)
+print(keepsakeicon.FilePath)
 
 sjson.hook(iconfile, function (data)
     table.insert(data.Animations, keepsakeicon)
