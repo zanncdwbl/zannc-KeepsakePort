@@ -59,12 +59,12 @@ local keepsakerack_persephone = sjson.to_object({
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pom Blossom",
     Description = "After every {#AltUpgradeFormat}{$TooltipData.ExtractData.TooltipRoomInterval} {#Prev}{$Keywords.EncounterPlural}, gain {#UseGiftPointFormat}+1 Lv.{!Icons.Pom} {#Prev}{#ItalicFormat}(a random {$Keywords.GodBoon} grows stronger){#Prev}"
-}, order)
+}, Order)
 
 local signoff_persephone = sjson.to_object({
     Id = "SignoffPersephone",
     DisplayName = "From Persephone",
-}, order)
+}, Order)
 
 
 sjson.hook(TraitTextFile, function(data)

@@ -4,6 +4,7 @@ Porting some Keepsakes over from Hades 1 to Hades 2
 Currently Added: <br>
     -- Thanatos Keepsake<br>
     -- Persephone Keepsake<br>
+    -- Hermes Keepsake<br>
 
 Current issues: <br>
     -- Heavily Untested, maybe values aren't correct for thanatos keepsake etc<br>

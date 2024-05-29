@@ -64,19 +64,35 @@ function CreateKeepsake_Data_Hermes()
 	}
 end
 
-sjson.hook(file, function(data)
-    -- Thanatos Hooks
-    if config.EnableThanatos == true then
-        table.insert(data.Texts, keepsake_thanatos)
-        table.insert(data.Texts, keepsakerack_thanatos)
-        table.insert(data.Texts, signoff_thanatos)
-    end
+CreateKeepsake_Data_Hermes()
 
-    -- Persephone Hooks
-    if config.EnablePersephone == true then
-        table.insert(data.Texts, keepsakerack_persephone)
-        table.insert(data.Texts, signoff_persephone)
-    end
+local keepsake_hermes = sjson.to_object({
+    Id = "",
+    InheritFrom = "",
+    Description = ""
+}, Order)
+
+sjson.hook(TraitTextFile, function(data)
+    table.insert(data.Texts, keepsake_hermes)
 end)
 
-CreateKeepsake_Data_Hermes()
+{
+    Id = "FastClearDodgeBonusTrait"
+    DisplayName = "Lambent Plume"
+    Description = "Gain greater {$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}. {#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.TooltipAccumulatedBonus:P} {#PreviousFormat}"
+}
+{
+    Id = "FastClearDodgeBonusTrait_Rack"
+    InheritFrom = "FastClearDodgeBonusTrait"
+    Description = "Gain greater {$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}. {#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.TooltipAccumulatedBonus:P} {#PreviousFormat} \n\n {#AwardFlavorFormat}{$TooltipData.SignoffText}"
+}
+{
+    Id = "FastClearDodgeBonusTrait_Dead"
+    DisplayName = "Lambent Plume"
+    Description = "Gain {#UpgradeFormat}{$TooltipData.TooltipFastClearDodgeBonus:P} {#PreviousFormat}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}. \n\n {#AwardFlavorFormat}{$TooltipData.SignoffText}"
+}
+{
+    Id = "FastClearDodgeBonusTrait_Tray"
+    DisplayName = "Lambent Plume"
+    Description = "Gain {#UpgradeFormat}{$TooltipData.TooltipFastClearDodgeBonus:P} {#PreviousFormat}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}."
+}

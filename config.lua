@@ -3,5 +3,6 @@ return {
     enabled = true,
 
     EnableThanatos = true,
-    EnablePersephone = true
+    EnablePersephone = true,
+    EnableHermes = true
 }
