@@ -1,16 +1,16 @@
-local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
+TraitTextFile = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
 local helpfile = rom.path.combine(rom.paths.Content, 'Game/Text/en/HelpText.en.sjson')
 local iconfile = rom.path.combine(rom.paths.Content, 'Game/Animations/GUIAnimations.sjson')
 
 -- Order for TraitText SJSON
-local order = {
+Order = {
     'Id',
     'InheritFrom',
     'DisplayName',
     'Description',
 }
 
-local iconorder = {
+IconOrder = {
     'Name',
     'InheritFrom',
     'FilePath',
@@ -25,7 +25,7 @@ local keepsake_thanatos = sjson.to_object({
     Id = "PerfectClearDamageBonusKeepsake_Tray",
     InheritFrom = "PerfectClearDamageBonusKeepsake",
     Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
-}, order)
+}, Order)
 
 -- In rack description
 local keepsakerack_thanatos = sjson.to_object({
@@ -33,12 +33,12 @@ local keepsakerack_thanatos = sjson.to_object({
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pierced Butterfly",
     Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
-}, order)
+}, Order)
 
 local signoff_thanatos = sjson.to_object({
     Id = "SignoffThanatos",
     DisplayName = "From Thanatos",
-}, order)
+}, Order)
 
 -- Clear Message in room, fixed from default
 function sjson_clearText(data)
@@ -67,7 +67,7 @@ local signoff_persephone = sjson.to_object({
 }, order)
 
 
-sjson.hook(file, function(data)
+sjson.hook(TraitTextFile, function(data)
     -- Thanatos Hooks
     if config.EnableThanatos == true then
         table.insert(data.Texts, keepsake_thanatos)
@@ -96,7 +96,7 @@ end)
     
 --     -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
 --     FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
--- }, iconorder)
+-- }, IconOrder)
 -- print(keepsakeicon.FilePath)
 
 -- sjson.hook(iconfile, function (data)

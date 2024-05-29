@@ -171,6 +171,7 @@ end
 CreateKeepsake_Order()
 CreateKeepsake_Data()
 
+
 -- Specifically for Thanatos Keepsake
 -- ONLY REAL ONES WILL KNOW THIS WAS PAINFUL AND YET SO SIMPLES
 function EndEncounterEffects_wrap( base, currentRun, currentRoom, currentEncounter )
