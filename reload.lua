@@ -37,7 +37,7 @@ function CreateKeepsake_Data()
         Name = "PerfectClearDamageBonusKeepsake",
 		-- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
 		CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
-		Icon = "Keepsake_Butterfly",
+		Icon = "Keepsake_01",
         ShowInHUD = true,
 		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
 		PriorityDisplay = true,
@@ -61,7 +61,7 @@ function CreateKeepsake_Data()
             Common = { Multiplier = 1.0 },
             Rare = { Multiplier = 1.5 },
             Epic = { Multiplier = 2.0 },
-            Heroic = { Multiplier = 3.0 },
+            Heroic = { Multiplier = 2.5 },
         },
 
         PerfectClearDamageBonus =
@@ -112,7 +112,7 @@ function CreateKeepsake_Data()
         ShowInHUD = true,
 		PriorityDisplay = true,
         NoFrame = true,
-        ChamberThresholds = { 1, 2 },
+        ChamberThresholds = { 25, 50 },
         HideInRunHistory = true,
         Slot = "Keepsake",
         InfoBackingAnimation = "KeepsakeSlotBase",
@@ -135,10 +135,8 @@ function CreateKeepsake_Data()
 
         RoomsPerUpgrade = 
 		{ 
-			Amount = 6,
+			Amount = {BaseValue = 6},
             TraitStacks = 1, -- Adding cause of TraitLogic in h2
-            -- SourceIsMultiplier = true,
-			-- TransformBlessing = true,
 			ReportValues = 
 			{ 
 				ReportedRoomsPerUpgrade = "Amount" 
@@ -158,7 +156,7 @@ function CreateKeepsake_Data()
             {
                 Text = "SignoffPersephone",
             }
-	    }
+        }
     }
 end
 
@@ -167,44 +165,11 @@ CreateKeepsake_Order()
 CreateKeepsake_Data()
 
 -- Specifically for Thanatos Keepsake
-function StartEncounterEffects_wrap( base, currentRun )
-	if not currentRun.CurrentRoom.BlockClearRewards then
-		for i, traitData in pairs( currentRun.Hero.Traits ) do
-            if traitData.PerfectClearDamageBonus then
-				PerfectClearTraitStartPresentation( traitData )
-			end
+-- ONLY REAL ONES WILL KNOW THIS WAS PAINFUL AND YET SO SIMPLES
+function EndEncounterEffects_wrap( base, currentRun, currentRoom, currentEncounter )
+	if currentEncounter == currentRoom.Encounter or currentEncounter == MapState.EncounterOverride then
+        if game.CurrentRun.CurrentRoom.Encounter.PlayerTookDamage ~= nil then
+            currentEncounter.PlayerTookDamage = game.CurrentRun.CurrentRoom.Encounter.PlayerTookDamage
         end
     end
 end
-
-function EndEncouterEffects_wrap( base, args )
-    if not game.currentRoom.BlockClearRewards then
-        for k, traitData in pairs(currentRun.Hero.Traits) do
-            if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
-                traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
-                PerfectClearTraitSuccessPresentation( traitData )
-                game.CurrentRun.CurrentRoom.PerfectEncounterCleared = true
-                -- CheckAchievement( { Name = "AchBuffedButterfly", CurrentValue = traitData.AccumulatedDamageBonus } )
-            end
-        end
-    end
-    CheckChamberTraits() -- suddenly everything works now..
-end
-
--- function CheckOnRoomClearTraits_wrap( base, args )
--- 	if not game.currentRoom.BlockClearRewards and not game.currentEncounter.ProcessedOnRoomClear then
--- 		game.currentEncounter.ProcessedOnRoomClear = true
--- 		for k, traitData in pairs(game.currentRun.Hero.Traits) do
--- 			if not game.currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
--- 				traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
--- 				PerfectClearTraitSuccessPresentation( traitData )
--- 				CurrentRun.CurrentRoom.PerfectEncounterCleared = true
--- 			end
---         end
---     end
--- end
-
--- function PerfectClearTraitStartPresentation( traitData )
--- 	-- PlaySound({ Name = "/EmptyCue" })
--- 	TraitUIActivateTrait( traitData )
--- end

@@ -86,15 +86,16 @@ end)
 --                    ICONS
 -- =================================================
 
-local keepsakeicon = sjson.to_object({
-    Name = "Keepsake_Butterfly",
-    InheritFrom = "KeepsakeIcon",
+-- local keepsakeicon = sjson.to_object({
+--     Name = "Keepsake_Butterfly",
+--     InheritFrom = "KeepsakeIcon",
     
-    -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
-    FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
-}, iconorder)
+--     -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
+--     FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
+-- }, iconorder)
+-- print(keepsakeicon.FilePath)
 
-sjson.hook(iconfile, function (data)
-    table.insert(data.Animations, keepsakeicon)
-    -- print(sjson.encode(data))
-end)
+-- sjson.hook(iconfile, function (data)
+--     table.insert(data.Animations, keepsakeicon)
+--     -- print(sjson.encode(data))
+-- end)
