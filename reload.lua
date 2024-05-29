@@ -3,28 +3,32 @@ function CreateKeepsake_Order()
     -- =================================================
     --                     Thanatos
     -- =================================================
-    table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
-    
-    game.GiftData.NPC_Thanatos_01 = {
-        [1] = {
-            Gift = "PerfectClearDamageBonusKeepsake"
-        },
-        InheritFrom = { "DefaultGiftData" },
-        Name = "PerfectClearDamageBonusKeepsake"
-    }
+    if config.EnableThanatos == true then
+        table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
+        
+        game.GiftData.NPC_Thanatos_01 = {
+            [1] = {
+                Gift = "PerfectClearDamageBonusKeepsake"
+            },
+            InheritFrom = { "DefaultGiftData" },
+            Name = "PerfectClearDamageBonusKeepsake"
+        }
+    end
 
     -- =================================================
     --                     Persephone
     -- =================================================
-    table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "ChamberStackTrait")
-    
-    game.GiftData.NPC_Persephone_01 = {
-        [1] = {
-            Gift = "ChamberStackTrait"
-        },
-        InheritFrom = { "DefaultGiftData" },
-        Name = "ChamberStackTrait"
-    }
+    if config.EnablePersephone == true then
+        table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "ChamberStackTrait")
+        
+        game.GiftData.NPC_Persephone_01 = {
+            [1] = {
+                Gift = "ChamberStackTrait"
+            },
+            InheritFrom = { "DefaultGiftData" },
+            Name = "ChamberStackTrait"
+        }
+    end
 end
 
 --Creating Keepsakes With all data since its not automatic like the base game
@@ -32,132 +36,135 @@ function CreateKeepsake_Data()
     -- =================================================
     --                     Thanatos
     -- =================================================
-	game.TraitData.PerfectClearDamageBonusKeepsake = {
-		InheritFrom = { "GiftTrait" },
-        Name = "PerfectClearDamageBonusKeepsake",
-		-- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
-		CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
-		Icon = "Keepsake_01",
-        ShowInHUD = true,
-		-- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
-		PriorityDisplay = true,
-        NoFrame = true,
-        ChamberThresholds = { 25, 50 },
-        HideInRunHistory = true,
-        Slot = "Keepsake",
-        InfoBackingAnimation = "KeepsakeSlotBase",
-        RecordCacheOnEquip = true,
-        TraitOrderingValueCache = -1,
-        ActiveSlotOffsetIndex =  0,
+    if config.EnableThanatos == true then
+        game.TraitData.PerfectClearDamageBonusKeepsake = {
+            InheritFrom = { "GiftTrait" },
+            Name = "PerfectClearDamageBonusKeepsake",
+            -- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
+            CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
+            Icon = "Keepsake_01",
+            ShowInHUD = true,
+            -- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
+            PriorityDisplay = true,
+            NoFrame = true,
+            ChamberThresholds = { 25, 50 },
+            HideInRunHistory = true,
+            Slot = "Keepsake",
+            InfoBackingAnimation = "KeepsakeSlotBase",
+            RecordCacheOnEquip = true,
+            TraitOrderingValueCache = -1,
+            ActiveSlotOffsetIndex =  0,
 
-        CustomRarityLevels = {
-            "TraitLevel_Keepsake1",
-            "TraitLevel_Keepsake2",
-            "TraitLevel_Keepsake3",
-            "TraitLevel_Keepsake4",
-        },
+            CustomRarityLevels = {
+                "TraitLevel_Keepsake1",
+                "TraitLevel_Keepsake2",
+                "TraitLevel_Keepsake3",
+                "TraitLevel_Keepsake4",
+            },
 
-        RarityLevels = {
-            Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 1.5 },
-            Epic = { Multiplier = 2.0 },
-            Heroic = { Multiplier = 2.5 },
-        },
+            RarityLevels = {
+                Common = { Multiplier = 1.0 },
+                Rare = { Multiplier = 1.5 },
+                Epic = { Multiplier = 2.0 },
+                Heroic = { Multiplier = 2.5 },
+            },
 
-        PerfectClearDamageBonus =
-		{
-			BaseValue = 1.01,
-			SourceIsMultiplier = true,
-			DecimalPlaces = 3,
-		},
-		AddOutgoingDamageModifiers =
-		{
-			UseTraitValue = "AccumulatedDamageBonus",
-		},
-		AccumulatedDamageBonus = 1,
+            PerfectClearDamageBonus =
+            {
+                BaseValue = 1.01,
+                SourceIsMultiplier = true,
+                DecimalPlaces = 3,
+            },
+            AddOutgoingDamageModifiers =
+            {
+                UseTraitValue = "AccumulatedDamageBonus",
+            },
+            AccumulatedDamageBonus = 1,
 
-        ExtractValues =
-		{
-			{
-				Key = "PerfectClearDamageBonus", 
-				ExtractAs = "TooltipPerfectClearBonus", 
-				Format = "PercentDelta",
-				DecimalPlaces = 1,
-			},
-			{
-				Key = "AccumulatedDamageBonus",
-				ExtractAs = "TooltipAccumulatedBonus",
-				Format = "PercentDelta",
-				DecimalPlaces = 1,
-			},
-		},
+            ExtractValues =
+            {
+                {
+                    Key = "PerfectClearDamageBonus", 
+                    ExtractAs = "TooltipPerfectClearBonus", 
+                    Format = "PercentDelta",
+                    DecimalPlaces = 1,
+                },
+                {
+                    Key = "AccumulatedDamageBonus",
+                    ExtractAs = "TooltipAccumulatedBonus",
+                    Format = "PercentDelta",
+                    DecimalPlaces = 1,
+                },
+            },
 
-		SignOffData = {
-			{
-				Text = "SignoffThanatos",
-			},
-		},
-	}
+            SignOffData = {
+                {
+                    Text = "SignoffThanatos",
+                },
+            },
+        }
+    end
 
     -- =================================================
     --                     Persephone
     -- =================================================
-    game.TraitData.ChamberStackTrait =
-	{
-		InheritFrom = { "GiftTrait" },
-        Name = "ChamberStackTrait",
-		Icon = "Keepsake_02",
-		-- InRackTitle = "ChamberStackTrait_Rack",
-		-- EquipSound = "/SFX/Menu Sounds/KeepsakePersephonePomBlossom",
-        ShowInHUD = true,
-		PriorityDisplay = true,
-        NoFrame = true,
-        ChamberThresholds = { 25, 50 },
-        HideInRunHistory = true,
-        Slot = "Keepsake",
-        InfoBackingAnimation = "KeepsakeSlotBase",
-        RecordCacheOnEquip = true,
-        TraitOrderingValueCache = -1,
-        ActiveSlotOffsetIndex =  0,
+    if config.EnablePersephone == true then
+        game.TraitData.ChamberStackTrait = {
+            InheritFrom = { "GiftTrait" },
+            Name = "ChamberStackTrait",
+            Icon = "Keepsake_02",
+            -- InRackTitle = "ChamberStackTrait_Rack",
+            -- EquipSound = "/SFX/Menu Sounds/KeepsakePersephonePomBlossom",
+            ShowInHUD = true,
+            PriorityDisplay = true,
+            NoFrame = true,
+            ChamberThresholds = { 25, 50 },
+            HideInRunHistory = true,
+            Slot = "Keepsake",
+            InfoBackingAnimation = "KeepsakeSlotBase",
+            RecordCacheOnEquip = true,
+            TraitOrderingValueCache = -1,
+            ActiveSlotOffsetIndex =  0,
 
-        CustomRarityLevels = {
-            "TraitLevel_Keepsake1",
-            "TraitLevel_Keepsake2",
-            "TraitLevel_Keepsake3",
-            "TraitLevel_Keepsake4",
-        },
+            CustomRarityLevels = {
+                "TraitLevel_Keepsake1",
+                "TraitLevel_Keepsake2",
+                "TraitLevel_Keepsake3",
+                "TraitLevel_Keepsake4",
+            },
 
-        RarityLevels = {
-            Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 5/6 },
-            Epic = { Multiplier = 4/6 },
-        },
+            RarityLevels = {
+                Common = { Multiplier = 1.0 },
+                Rare = { Multiplier = 5/6 },
+                Epic = { Multiplier = 4/6 },
+            },
 
-        RoomsPerUpgrade = 
-		{ 
-			Amount = {BaseValue = 6},
-            TraitStacks = 1, -- Adding cause of TraitLogic in h2
-			ReportValues = 
-			{ 
-				ReportedRoomsPerUpgrade = "Amount" 
-			},
-		},
-		CurrentRoom = 0,
-		ExtractValues =
-		{
-			{
-				Key = "ReportedRoomsPerUpgrade",
-				ExtractAs = "TooltipRoomInterval",
-			}
-		},
-
-		SignOffData =
-		{
+            RoomsPerUpgrade = 
+            { 
+                Amount = {BaseValue = 6},
+                TraitStacks = 1, -- Adding cause of TraitLogic in h2
+                ReportValues = 
+                { 
+                    ReportedRoomsPerUpgrade = "Amount" 
+                },
+            },
+            CurrentRoom = 0,
+            ExtractValues =
             {
-                Text = "SignoffPersephone",
+                {
+                    Key = "ReportedRoomsPerUpgrade",
+                    ExtractAs = "TooltipRoomInterval",
+                }
+            },
+
+            SignOffData =
+            {
+                {
+                    Text = "SignoffPersephone",
+                }
             }
         }
-    }
+    end
 end
 
 -- Calling Functions

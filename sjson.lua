@@ -40,7 +40,7 @@ local signoff_thanatos = sjson.to_object({
     DisplayName = "From Thanatos",
 }, order)
 
--- Clear Message in room
+-- Clear Message in room, fixed from default
 function sjson_clearText(data)
 	for _,v in ipairs(data.Texts) do
 		if v.Id == 'PerfectClearDamageBonus' then
@@ -69,13 +69,17 @@ local signoff_persephone = sjson.to_object({
 
 sjson.hook(file, function(data)
     -- Thanatos Hooks
-    table.insert(data.Texts, keepsake_thanatos)
-    table.insert(data.Texts, keepsakerack_thanatos)
-    table.insert(data.Texts, signoff_thanatos)
+    if config.EnableThanatos == true then
+        table.insert(data.Texts, keepsake_thanatos)
+        table.insert(data.Texts, keepsakerack_thanatos)
+        table.insert(data.Texts, signoff_thanatos)
+    end
 
     -- Persephone Hooks
-    table.insert(data.Texts, keepsakerack_persephone)
-    table.insert(data.Texts, signoff_persephone)
+    if config.EnablePersephone == true then
+        table.insert(data.Texts, keepsakerack_persephone)
+        table.insert(data.Texts, signoff_persephone)
+    end
 end)
 
 sjson.hook(helpfile, function (data)
