@@ -17,13 +17,13 @@ if config.EnableThanatos == true then
 
         -- Creating Keepsake Data
         game.TraitData.PerfectClearDamageBonusKeepsake = {
+            Icon = "Keepsake_01",
             InheritFrom = { "GiftTrait" },
             Name = "PerfectClearDamageBonusKeepsake",
-            -- InRackTitle = "PerfectClearDamageBonusKeepsake_Rack",
             CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
-            Icon = "Keepsake_01",
+
+            -- Always add these, so it SHUTS UP
             ShowInHUD = true,
-            -- EquipSound = "/SFX/Menu Sounds/KeepsakeArtemisArrow",
             PriorityDisplay = true,
             NoFrame = true,
             ChamberThresholds = { 25, 50 },

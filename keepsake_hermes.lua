@@ -15,24 +15,36 @@ if config.EnableHermes == true then
             Name = "FastClearDodgeBonusKeepsake"
         }
 
-        FastClearDodgeBonusKeepsake = {
+        game.TraitData.FastClearDodgeBonusKeepsake = {
             Icon = "Keepsake_03",
             InheritFrom = { "GiftTrait" },
-            CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
-            RarityLevels = {
-                Common =
-                {
-                    Multiplier = 1.0,
-                },
-                Rare =
-                {
-                    Multiplier = 1.1,
+            Name = "FastClearDodgeBonusKeepsake",
+            CustomTrayText = "FastClearDodgeBonusKeepsake_Tray",
 
-                },
-                Epic =
-                {
-                    Multiplier = 1.2,
-                }
+            -- Always add these, so it SHUTS UP
+            ShowInHUD = true,
+            PriorityDisplay = true,
+            NoFrame = true,
+            ChamberThresholds = { 25, 50 },
+            HideInRunHistory = true,
+            Slot = "Keepsake",
+            InfoBackingAnimation = "KeepsakeSlotBase",
+            RecordCacheOnEquip = true,
+            TraitOrderingValueCache = -1,
+            ActiveSlotOffsetIndex =  0,
+
+            CustomRarityLevels = {
+                "TraitLevel_Keepsake1",
+                "TraitLevel_Keepsake2",
+                "TraitLevel_Keepsake3",
+                "TraitLevel_Keepsake4",
+            },
+
+            RarityLevels = {
+                Common = { Multiplier = 1.0 },
+                Rare = { Multiplier = 1.1 },
+                Epic = { Multiplier = 1.2 },
+                Heroic = { Multiplier = 1.3 },
             },
 
             FastClearThreshold = 30,
@@ -64,7 +76,7 @@ if config.EnableHermes == true then
 
             SignOffData = {
                 {
-                    Text = "HermesSignoff",
+                    Text = "SignoffHermes",
                 },
             }
         }
@@ -87,6 +99,7 @@ if config.EnableHermes == true then
     local keepsakerack_hermes = sjson.to_object({
         Id = "FastClearDodgeBonusKeepsake",
         InheritFrom = "BaseBoonMultiline",
+        DisplayName = "Lambent Plume",
         Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}."
     }, Order)
 

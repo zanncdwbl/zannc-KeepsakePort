@@ -17,11 +17,11 @@ if config.EnablePersephone == true then
 
         -- Creating Keepsake Data
         game.TraitData.ChamberStackTrait = {
+            Icon = "Keepsake_02",
             InheritFrom = { "GiftTrait" },
             Name = "ChamberStackTrait",
-            Icon = "Keepsake_02",
-            -- InRackTitle = "ChamberStackTrait_Rack",
-            -- EquipSound = "/SFX/Menu Sounds/KeepsakePersephonePomBlossom",
+
+            -- Always add these, so it SHUTS UP
             ShowInHUD = true,
             PriorityDisplay = true,
             NoFrame = true,
