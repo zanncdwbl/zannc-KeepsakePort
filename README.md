@@ -15,5 +15,4 @@ Current issues: <br>
 Planned Keepsakes : <br>
     -- Orpheus Keepsake (Game is more range based now)<br>
     -- Maybe Sisyphus, bloated boon pool so it might be easier for it to be viable<br>
-    -- Hermes -- Lambent Plume <br>
-    -- New Keepsakes
+    -- New Keepsakes from New Gods?
