@@ -4,7 +4,7 @@
     "description": "Porting some Keepsakes over from Hades 1 to Hades 2",
     "version_number": "0.0.1",
     "dependencies": [
-        "Hell2Modding-Hell2Modding-1.0.33",
+        "Hell2Modding-Hell2Modding-1.0.34",
         "SGG_Modding-ModUtil-3.1.2",
         "SGG_Modding-ENVY-1.0.1",
         "SGG_Modding-Chalk-2.1.1",
