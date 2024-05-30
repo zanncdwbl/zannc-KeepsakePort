@@ -1,5 +1,5 @@
 TraitTextFile = rom.path.combine(rom.paths.Content, 'Game/Text/en/TraitText.en.sjson')
-local helpfile = rom.path.combine(rom.paths.Content, 'Game/Text/en/HelpText.en.sjson')
+HelpTextFile = rom.path.combine(rom.paths.Content, 'Game/Text/en/HelpText.en.sjson')
 local iconfile = rom.path.combine(rom.paths.Content, 'Game/Animations/GUIAnimations.sjson')
 
 -- Order for TraitText SJSON
@@ -10,85 +10,15 @@ Order = {
     'Description',
 }
 
-IconOrder = {
-    'Name',
-    'InheritFrom',
-    'FilePath',
-}
-
 -- =================================================
---                     Thanatos
+--   ICONS, Won't be done until absolute paths
 -- =================================================
 
--- Used for when you have it equipped
-local keepsake_thanatos = sjson.to_object({
-    Id = "PerfectClearDamageBonusKeepsake_Tray",
-    InheritFrom = "PerfectClearDamageBonusKeepsake",
-    Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
-}, Order)
-
--- In rack description
-local keepsakerack_thanatos = sjson.to_object({
-    Id = "PerfectClearDamageBonusKeepsake",
-    InheritFrom = "BaseBoonMultiline",
-    DisplayName = "Pierced Butterfly",
-    Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
-}, Order)
-
-local signoff_thanatos = sjson.to_object({
-    Id = "SignoffThanatos",
-    DisplayName = "From Thanatos",
-}, Order)
-
--- Clear Message in room, fixed from default
-function sjson_clearText(data)
-	for _,v in ipairs(data.Texts) do
-		if v.Id == 'PerfectClearDamageBonus' then
-			v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
-			break
-		end
-	end
-end
-
--- =================================================
---                     Persephone
--- =================================================
-
-local keepsakerack_persephone = sjson.to_object({
-    Id = "ChamberStackTrait",
-    InheritFrom = "BaseBoonMultiline",
-    DisplayName = "Pom Blossom",
-    Description = "After every {#AltUpgradeFormat}{$TooltipData.ExtractData.TooltipRoomInterval} {#Prev}{$Keywords.EncounterPlural}, gain {#UseGiftPointFormat}+1 Lv.{!Icons.Pom} {#Prev}{#ItalicFormat}(a random {$Keywords.GodBoon} grows stronger){#Prev}"
-}, Order)
-
-local signoff_persephone = sjson.to_object({
-    Id = "SignoffPersephone",
-    DisplayName = "From Persephone",
-}, Order)
-
-
-sjson.hook(TraitTextFile, function(data)
-    -- Thanatos Hooks
-    if config.EnableThanatos == true then
-        table.insert(data.Texts, keepsake_thanatos)
-        table.insert(data.Texts, keepsakerack_thanatos)
-        table.insert(data.Texts, signoff_thanatos)
-    end
-
-    -- Persephone Hooks
-    if config.EnablePersephone == true then
-        table.insert(data.Texts, keepsakerack_persephone)
-        table.insert(data.Texts, signoff_persephone)
-    end
-end)
-
-sjson.hook(helpfile, function (data)
-    return sjson_clearText(data)
-end)
-
--- =================================================
---                    ICONS
--- =================================================
+-- IconOrder = {
+--     'Name',
+--     'InheritFrom',
+--     'FilePath',
+-- 
 
 -- local keepsakeicon = sjson.to_object({
 --     Name = "Keepsake_Butterfly",

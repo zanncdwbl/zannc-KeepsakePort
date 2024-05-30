@@ -7,6 +7,8 @@
 local mods = rom.mods
 
 ---@diagnostic disable: lowercase-global
+---@module 'SGG_Modding-ENVY-auto'
+mods['SGG_Modding-ENVY'].auto()
 
 ---@diagnostic disable-next-line: undefined-global
 rom = rom
@@ -34,14 +36,16 @@ public.config = config
 
 local function on_ready()
     if config.enabled == false then return end
-    
-    import_as_fallback(rom.game)
-    import 'sjson.lua'
     import 'ready.lua'
+    import 'sjson.lua'
+
+    import 'keepsake_thanatos.lua'
+    import 'keepsake_persephone.lua'
+    import 'keepsake_hermes.lua'
 end
 
 local function on_reload()
-    import_as_fallback(rom.game)
+    if config.enabled == false then return end
     import 'reload.lua'
 end
 
