@@ -1,7 +1,7 @@
 {
     "namespace": "zannc",
     "name": "KeepsakePort",
-    "description": "Porting some Keepsakes over from Hades 1 to Hades 2",
+    "description": "Porting some Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persephone, Hermes.",
     "version_number": "0.0.1",
     "dependencies": [
         "Hell2Modding-Hell2Modding-1.0.34",
