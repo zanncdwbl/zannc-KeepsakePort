@@ -35,7 +35,7 @@ config = chalk.auto 'config.lua'
 public.config = config
 
 local function on_ready()
-    if config.enabled == false then return end
+    if config.Enabled == false then return end
     import 'ready.lua'
     import 'sjson.lua'
 
@@ -45,7 +45,7 @@ local function on_ready()
 end
 
 local function on_reload()
-    if config.enabled == false then return end
+    if config.Enabled == false then return end
     import 'reload.lua'
 end
 

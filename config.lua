@@ -1,6 +1,6 @@
 ---@meta KeepsakePort-zannc-config
 return {
-    enabled = true,
+    Enabled = true,
 
     EnableThanatos = true,
     EnablePersephone = true,
