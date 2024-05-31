@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "zannc"
 name = "KeepsakePort"
-versionNumber = "1.0.0"
+versionNumber = "1.0.1"
 description = "Porting some Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persephone, Hermes."
 websiteUrl = "https://github.com/zanncdwbl/zannc-KeepsakePort"
 containsNsfwContent = false
@@ -33,7 +33,7 @@ source = "./LICENSE"
 target = "./LICENSE"
 
 [[build.copy]]
-source = "./"
+source = "./src"
 target = "./plugins"
 
 
