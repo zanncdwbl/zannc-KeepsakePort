@@ -14,22 +14,21 @@ Order = {
 --   ICONS, Won't be done until absolute paths
 -- =================================================
 
--- IconOrder = {
---     'Name',
---     'InheritFrom',
---     'FilePath',
--- 
+IconOrder = {
+    'Name',
+    'InheritFrom',
+    'FilePath',
+}
 
--- local keepsakeicon = sjson.to_object({
---     Name = "Keepsake_Butterfly",
---     InheritFrom = "KeepsakeIcon",
+local keepsakeicon = sjson.to_object({
+    Name = "Keepsake_Butterfly",
+    InheritFrom = "KeepsakeIcon",
     
---     -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
---     FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
--- }, IconOrder)
--- print(keepsakeicon.FilePath)
+    -- Manifest Path is zannc-KeepsakePort/Keepsake_Butterfly
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Keepsake_Butterfly')
+}, IconOrder)
 
--- sjson.hook(iconfile, function (data)
---     table.insert(data.Animations, keepsakeicon)
---     -- print(sjson.encode(data))
--- end)
+sjson.hook(iconfile, function (data)
+    table.insert(data.Animations, keepsakeicon)
+    -- print(sjson.encode(data))
+end)

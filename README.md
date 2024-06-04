@@ -10,7 +10,8 @@ Current issues: <br>
     -- Heavily Untested, maybe values aren't correct for thanatos keepsake etc<br>
     // Persephone Rarity not working (wow its fixed thanks man so awesome thanks pony)<br>
     // Thanatos Increments in the fields even if hit (....mildly infuriating)<br>
-    -- Maybe change the keepsake effect for Thanatos
+    -- Maybe change the keepsake effect for Thanatos <br>
+    -- Change Clear Timer for Hermes
 
 Planned Keepsakes : <br>
     -- Orpheus Keepsake (Game is more range based now)<br>

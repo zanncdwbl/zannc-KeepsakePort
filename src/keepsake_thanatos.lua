@@ -17,7 +17,7 @@ if config.EnableThanatos == true then
 
         -- Creating Keepsake Data
         game.TraitData.PerfectClearDamageBonusKeepsake = {
-            Icon = "Keepsake_01",
+            Icon = "Keepsake_Butterfly",
             InheritFrom = { "GiftTrait" },
             Name = "PerfectClearDamageBonusKeepsake",
             CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",

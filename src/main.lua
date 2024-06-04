@@ -36,6 +36,7 @@ public.config = config
 
 local function on_ready()
     if config.Enabled == false then return end
+    
     import 'ready.lua'
     import 'sjson.lua'
 
@@ -51,6 +52,6 @@ end
 
 local loader = reload.auto_single()
 
-modutil.on_ready_final(function()
+modutil.once_loaded.game(function()
 	loader.load(on_ready, on_reload)
 end)
