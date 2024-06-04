@@ -36,7 +36,7 @@ public.config = config
 
 local function on_ready()
     if config.Enabled == false then return end
-    
+    import_as_fallback(rom.game)
     import 'ready.lua'
     import 'sjson.lua'
 
@@ -47,6 +47,7 @@ end
 
 local function on_reload()
     if config.Enabled == false then return end
+    import_as_fallback(rom.game)
     import 'reload.lua'
 end
 
