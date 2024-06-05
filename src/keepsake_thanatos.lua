@@ -24,7 +24,8 @@ function CreateKeepsake_Thanatos()
         -- Always add these, so it SHUTS UP
         ShowInHUD = true,
         PriorityDisplay = true,
-        NoFrame = true,
+        Ordered = true,
+        HUDScale = 0.435,
         ChamberThresholds = { 25, 50 },
         HideInRunHistory = true,
         Slot = "Keepsake",
@@ -32,6 +33,13 @@ function CreateKeepsake_Thanatos()
         RecordCacheOnEquip = true,
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
+
+        FrameRarities =
+		{
+			Common = "Frame_Keepsake_Rank1",
+			Rare = "Frame_Keepsake_Rank2",
+			Epic = "Frame_Keepsake_Rank3",
+		},
 
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",

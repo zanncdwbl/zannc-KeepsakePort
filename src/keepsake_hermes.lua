@@ -14,6 +14,7 @@ function CreateKeepsake_Hermes()
         Name = "FastClearDodgeBonusKeepsake"
     }
 
+    -- Creating Keepsake Data
     game.TraitData.FastClearDodgeBonusKeepsake = {
         Icon = "Lambent_Plume",
         InheritFrom = { "GiftTrait" },
@@ -22,8 +23,9 @@ function CreateKeepsake_Hermes()
 
         -- Always add these, so it SHUTS UP
         ShowInHUD = true,
+        Ordered = true,
+        HUDScale = 0.435,
         PriorityDisplay = true,
-        NoFrame = true,
         ChamberThresholds = { 25, 50 },
         HideInRunHistory = true,
         Slot = "Keepsake",
@@ -31,6 +33,13 @@ function CreateKeepsake_Hermes()
         RecordCacheOnEquip = true,
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
+
+        FrameRarities =
+		{
+			Common = "Frame_Keepsake_Rank1",
+			Rare = "Frame_Keepsake_Rank2",
+			Epic = "Frame_Keepsake_Rank3",
+		},
 
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",

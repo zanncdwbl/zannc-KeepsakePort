@@ -22,8 +22,9 @@ function CreateKeepsake_Persephone()
 
         -- Always add these, so it SHUTS UP
         ShowInHUD = true,
+        Ordered = true,
+        HUDScale = 0.435,
         PriorityDisplay = true,
-        NoFrame = true,
         ChamberThresholds = { 25, 50 },
         HideInRunHistory = true,
         Slot = "Keepsake",
@@ -32,6 +33,13 @@ function CreateKeepsake_Persephone()
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
         
+        FrameRarities =
+		{
+			Common = "Frame_Keepsake_Rank1",
+			Rare = "Frame_Keepsake_Rank2",
+			Epic = "Frame_Keepsake_Rank3",
+		},
+
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",
             "TraitLevel_Keepsake2",
