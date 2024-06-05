@@ -16,7 +16,7 @@ if config.EnableHermes == true then
         }
 
         game.TraitData.FastClearDodgeBonusKeepsake = {
-            Icon = "Keepsake_03",
+            Icon = "Lambent_Plume",
             InheritFrom = { "GiftTrait" },
             Name = "FastClearDodgeBonusKeepsake",
             CustomTrayText = "FastClearDodgeBonusKeepsake_Tray",
@@ -103,6 +103,13 @@ if config.EnableHermes == true then
         Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}."
     }, Order)
 
+    -- Icon JSON data
+    local keepsakeicon_hermes = sjson.to_object({
+        Name = "Lambent_Plume",
+        InheritFrom = "KeepsakeIcon",
+        FilePath = rom.path.combine('keepsakes/Lambent_Plume')
+    }, IconOrder)
+
     -- Clear Message in room, fixed from default
     function sjson_clearText(data)
         for _,v in ipairs(data.Texts) do
@@ -113,10 +120,16 @@ if config.EnableHermes == true then
         end
     end
 
+    -- Inserting into SJSON
     sjson.hook(TraitTextFile, function(data)
         table.insert(data.Texts, keepsake_hermes)
         table.insert(data.Texts, keepsakerack_hermes)
         print("Hermes Hook Done")
+    end)
+
+    -- Insert for Icons
+    sjson.hook(GUIAnimationsFile, function (data)
+        table.insert(data.Animations, keepsakeicon_hermes)
     end)
 
     sjson.hook(HelpTextFile, function (data)

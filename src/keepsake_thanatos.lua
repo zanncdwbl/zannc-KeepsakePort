@@ -17,7 +17,7 @@ if config.EnableThanatos == true then
 
         -- Creating Keepsake Data
         game.TraitData.PerfectClearDamageBonusKeepsake = {
-            Icon = "Keepsake_Butterfly",
+            Icon = "Pierced_Butterfly",
             InheritFrom = { "GiftTrait" },
             Name = "PerfectClearDamageBonusKeepsake",
             CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
@@ -111,6 +111,13 @@ if config.EnableThanatos == true then
         DisplayName = "From Thanatos",
     }, Order)
 
+    -- Icon JSON data
+    local keepsakeicon_thanatos = sjson.to_object({
+        Name = "Pierced_Butterfly",
+        InheritFrom = "KeepsakeIcon",
+        FilePath = rom.path.combine('keepsakes\\Pierced_Butterfly')
+    }, IconOrder)
+
     -- Clear Message in room, fixed from default
     function sjson_clearText(data)
         for _,v in ipairs(data.Texts) do
@@ -127,6 +134,11 @@ if config.EnableThanatos == true then
         table.insert(data.Texts, keepsakerack_thanatos)
         table.insert(data.Texts, signoff_thanatos)
         print("Thanatos Hook Done")
+    end)
+
+    -- Insert for Icons
+    sjson.hook(GUIAnimationsFile, function (data)
+        table.insert(data.Animations, keepsakeicon_thanatos)
     end)
 
     sjson.hook(HelpTextFile, function (data)

@@ -17,7 +17,7 @@ if config.EnablePersephone == true then
 
         -- Creating Keepsake Data
         game.TraitData.ChamberStackTrait = {
-            Icon = "Keepsake_02",
+            Icon = "Pom_Blossom",
             InheritFrom = { "GiftTrait" },
             Name = "ChamberStackTrait",
 
@@ -93,11 +93,23 @@ if config.EnablePersephone == true then
         DisplayName = "From Persephone",
     }, Order)
 
+    -- Icon JSON data
+    local keepsakeicon_persephone = sjson.to_object({
+        Name = "Pom_Blossom",
+        InheritFrom = "KeepsakeIcon",
+        FilePath = rom.path.combine('keepsakes/Pom_Blossom')
+    }, IconOrder)
+
     -- Inserting into SJSON
     sjson.hook(TraitTextFile, function(data)
         table.insert(data.Texts, keepsakerack_persephone)
         table.insert(data.Texts, signoff_persephone)
         print("Persephone Hook Done")
+    end)
+
+    -- Insert for Icons
+    sjson.hook(GUIAnimationsFile, function (data)
+        table.insert(data.Animations, keepsakeicon_persephone)
     end)
 
     print("Persephone Keepsake Data Complete")
