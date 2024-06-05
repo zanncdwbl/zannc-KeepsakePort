@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+Added Icons (woo!) <br>
+Fixed Hermes Crash in Fields <br>
+Added Custom Clear times per region and boss
 
 ## [1.0.1] - 2024-05-31
 
