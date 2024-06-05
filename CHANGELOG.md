@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.0.2] - 2024-06-05
+
 Added Icons (woo!) <br>
 Fixed Hermes Crash in Fields
 
@@ -19,6 +22,7 @@ Added 3 God Keepsakes from Hades1, Hermes, Thanatos and Persephone
 \-- New Keepsakes from New Gods? <br>
 \-- Added Custom Clear times per region and boss
 
-[unreleased]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.1...HEAD
+[unreleased]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/47ff815ce35f32d72c7f6ad86bbc90547c5aea28...1.0.0
