@@ -1,149 +1,147 @@
-if config.EnableThanatos == true then
-    -- =================================================
-    --               Thanatos KEEPSAKE
-    -- =================================================
-    function CreateKeepsake_Thanatos()
-        -- Creating Keepsake Order
-        table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
-        
-        -- Creating Gift Data
-        game.GiftData.NPC_Thanatos_01 = {
-            [1] = {
-                Gift = "PerfectClearDamageBonusKeepsake"
-            },
-            InheritFrom = { "DefaultGiftData" },
-            Name = "PerfectClearDamageBonusKeepsake"
-        }
+-- =================================================
+--               Thanatos KEEPSAKE
+-- =================================================
+function CreateKeepsake_Thanatos()
+    -- Creating Keepsake Order
+    table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
+    
+    -- Creating Gift Data
+    game.GiftData.NPC_Thanatos_01 = {
+        [1] = {
+            Gift = "PerfectClearDamageBonusKeepsake"
+        },
+        InheritFrom = { "DefaultGiftData" },
+        Name = "PerfectClearDamageBonusKeepsake"
+    }
 
-        -- Creating Keepsake Data
-        game.TraitData.PerfectClearDamageBonusKeepsake = {
-            Icon = "Pierced_Butterfly",
-            InheritFrom = { "GiftTrait" },
-            Name = "PerfectClearDamageBonusKeepsake",
-            CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
+    -- Creating Keepsake Data
+    game.TraitData.PerfectClearDamageBonusKeepsake = {
+        Icon = "Pierced_Butterfly",
+        InheritFrom = { "GiftTrait" },
+        Name = "PerfectClearDamageBonusKeepsake",
+        CustomTrayText = "PerfectClearDamageBonusKeepsake_Tray",
 
-            -- Always add these, so it SHUTS UP
-            ShowInHUD = true,
-            PriorityDisplay = true,
-            NoFrame = true,
-            ChamberThresholds = { 25, 50 },
-            HideInRunHistory = true,
-            Slot = "Keepsake",
-            InfoBackingAnimation = "KeepsakeSlotBase",
-            RecordCacheOnEquip = true,
-            TraitOrderingValueCache = -1,
-            ActiveSlotOffsetIndex =  0,
+        -- Always add these, so it SHUTS UP
+        ShowInHUD = true,
+        PriorityDisplay = true,
+        NoFrame = true,
+        ChamberThresholds = { 25, 50 },
+        HideInRunHistory = true,
+        Slot = "Keepsake",
+        InfoBackingAnimation = "KeepsakeSlotBase",
+        RecordCacheOnEquip = true,
+        TraitOrderingValueCache = -1,
+        ActiveSlotOffsetIndex =  0,
 
-            CustomRarityLevels = {
-                "TraitLevel_Keepsake1",
-                "TraitLevel_Keepsake2",
-                "TraitLevel_Keepsake3",
-                "TraitLevel_Keepsake4",
-            },
+        CustomRarityLevels = {
+            "TraitLevel_Keepsake1",
+            "TraitLevel_Keepsake2",
+            "TraitLevel_Keepsake3",
+            "TraitLevel_Keepsake4",
+        },
 
-            RarityLevels = {
-                Common = { Multiplier = 1.0 },
-                Rare = { Multiplier = 1.5 },
-                Epic = { Multiplier = 2.0 },
-                Heroic = { Multiplier = 2.5 },
-            },
+        RarityLevels = {
+            Common = { Multiplier = 1.0 },
+            Rare = { Multiplier = 1.5 },
+            Epic = { Multiplier = 2.0 },
+            Heroic = { Multiplier = 2.5 },
+        },
 
-            PerfectClearDamageBonus =
+        PerfectClearDamageBonus =
+        {
+            BaseValue = 1.01,
+            SourceIsMultiplier = true,
+            DecimalPlaces = 3,
+        },
+        AddOutgoingDamageModifiers =
+        {
+            UseTraitValue = "AccumulatedDamageBonus",
+        },
+        AccumulatedDamageBonus = 1,
+
+        ExtractValues =
+        {
             {
-                BaseValue = 1.01,
-                SourceIsMultiplier = true,
-                DecimalPlaces = 3,
+                Key = "PerfectClearDamageBonus", 
+                ExtractAs = "TooltipPerfectClearBonus", 
+                Format = "PercentDelta",
+                DecimalPlaces = 1,
             },
-            AddOutgoingDamageModifiers =
             {
-                UseTraitValue = "AccumulatedDamageBonus",
+                Key = "AccumulatedDamageBonus",
+                ExtractAs = "TooltipAccumulatedBonus",
+                Format = "PercentDelta",
+                DecimalPlaces = 1,
             },
-            AccumulatedDamageBonus = 1,
+        },
 
-            ExtractValues =
+        SignOffData = {
             {
-                {
-                    Key = "PerfectClearDamageBonus", 
-                    ExtractAs = "TooltipPerfectClearBonus", 
-                    Format = "PercentDelta",
-                    DecimalPlaces = 1,
-                },
-                {
-                    Key = "AccumulatedDamageBonus",
-                    ExtractAs = "TooltipAccumulatedBonus",
-                    Format = "PercentDelta",
-                    DecimalPlaces = 1,
-                },
+                Text = "SignoffThanatos",
             },
+        },
+    }
+end
 
-            SignOffData = {
-                {
-                    Text = "SignoffThanatos",
-                },
-            },
-        }
-    end
+-- Call the Function
+CreateKeepsake_Thanatos()
 
-    -- Call the Function
-    CreateKeepsake_Thanatos()
+-- =================================================
+--                 Thanatos SJSON
+-- =================================================
+-- Used for when you have it equipped
+local keepsake_thanatos = sjson.to_object({
+    Id = "PerfectClearDamageBonusKeepsake_Tray",
+    InheritFrom = "PerfectClearDamageBonusKeepsake",
+    Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
+}, Order)
 
-    -- =================================================
-    --                 Thanatos SJSON
-    -- =================================================
-    -- Used for when you have it equipped
-    local keepsake_thanatos = sjson.to_object({
-        Id = "PerfectClearDamageBonusKeepsake_Tray",
-        InheritFrom = "PerfectClearDamageBonusKeepsake",
-        Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
-    }, Order)
+-- In rack description
+local keepsakerack_thanatos = sjson.to_object({
+    Id = "PerfectClearDamageBonusKeepsake",
+    InheritFrom = "BaseBoonMultiline",
+    DisplayName = "Pierced Butterfly",
+    Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
+}, Order)
 
-    -- In rack description
-    local keepsakerack_thanatos = sjson.to_object({
-        Id = "PerfectClearDamageBonusKeepsake",
-        InheritFrom = "BaseBoonMultiline",
-        DisplayName = "Pierced Butterfly",
-        Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
-    }, Order)
+-- From which Character
+local signoff_thanatos = sjson.to_object({
+    Id = "SignoffThanatos",
+    DisplayName = "From Thanatos",
+}, Order)
 
-    -- From which Character
-    local signoff_thanatos = sjson.to_object({
-        Id = "SignoffThanatos",
-        DisplayName = "From Thanatos",
-    }, Order)
+-- Icon JSON data
+local keepsakeicon_thanatos = sjson.to_object({
+    Name = "Pierced_Butterfly",
+    InheritFrom = "KeepsakeIcon",
+    FilePath = rom.path.combine('keepsakes\\Pierced_Butterfly')
+}, IconOrder)
 
-    -- Icon JSON data
-    local keepsakeicon_thanatos = sjson.to_object({
-        Name = "Pierced_Butterfly",
-        InheritFrom = "KeepsakeIcon",
-        FilePath = rom.path.combine('keepsakes\\Pierced_Butterfly')
-    }, IconOrder)
-
-    -- Clear Message in room, fixed from default
-    function sjson_clearText(data)
-        for _,v in ipairs(data.Texts) do
-            if v.Id == 'PerfectClearDamageBonus' then
-                v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
-                break
-            end
+-- Clear Message in room, fixed from default
+function sjson_clearText(data)
+    for _,v in ipairs(data.Texts) do
+        if v.Id == 'PerfectClearDamageBonus' then
+            v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
+            break
         end
     end
-
-    -- Inserting into SJSON
-    sjson.hook(TraitTextFile, function(data)
-        table.insert(data.Texts, keepsake_thanatos)
-        table.insert(data.Texts, keepsakerack_thanatos)
-        table.insert(data.Texts, signoff_thanatos)
-        print("Thanatos Hook Done")
-    end)
-
-    -- Insert for Icons
-    sjson.hook(GUIAnimationsFile, function (data)
-        table.insert(data.Animations, keepsakeicon_thanatos)
-    end)
-
-    sjson.hook(HelpTextFile, function (data)
-        return sjson_clearText(data)
-    end)
-
-    print("Thanatos Keepsake Data Complete")
 end
+
+-- Inserting into SJSON
+sjson.hook(TraitTextFile, function(data)
+    table.insert(data.Texts, keepsake_thanatos)
+    table.insert(data.Texts, keepsakerack_thanatos)
+    table.insert(data.Texts, signoff_thanatos)
+    print("Thanatos Hook Done")
+end)
+
+-- Insert for Icons
+sjson.hook(GUIAnimationsFile, function (data)
+    table.insert(data.Animations, keepsakeicon_thanatos)
+end)
+
+sjson.hook(HelpTextFile, function (data)
+    return sjson_clearText(data)
+end)
+
+print("Thanatos Keepsake Data Complete")

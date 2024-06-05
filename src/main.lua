@@ -37,12 +37,13 @@ public.config = config
 local function on_ready()
     if config.Enabled == false then return end
     import_as_fallback(rom.game)
+
     import 'ready.lua'
     import 'sjson.lua'
 
-    import 'keepsake_thanatos.lua'
-    import 'keepsake_persephone.lua'
-    import 'keepsake_hermes.lua'
+    if config.EnableThanatos then import 'keepsake_thanatos.lua' end
+    if config.EnableHermes then import 'keepsake_hermes.lua' end
+    if config.EnablePersephone then import 'keepsake_persephone.lua' end
 end
 
 local function on_reload()
