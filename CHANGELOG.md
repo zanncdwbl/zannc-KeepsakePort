@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+Fixed Clear Text being messed up <br>
+Added Config options, now you can customize values of Hermes & Thanatos Keepsake (Be sure to delete your old config)
 
 ## [1.0.2] - 2024-06-05
 
