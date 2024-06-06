@@ -5,8 +5,8 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "zannc"
 name = "KeepsakePort"
-versionNumber = "1.0.2"
-description = "Porting some Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persephone, Hermes."
+versionNumber = "1.0.3"
+description = "Porting some Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persephone, Hermes. Now with Icons!"
 websiteUrl = "https://github.com/zanncdwbl/zannc-KeepsakePort"
 containsNsfwContent = false
 

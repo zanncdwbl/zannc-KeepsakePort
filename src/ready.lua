@@ -2,7 +2,8 @@
 ---@diagnostic disable: lowercase-global
 -- Absolute Path links to plugins_data folder - mod folder, then package name - which MUST contain mod author name for uniqueness
 local package = rom.path.combine(_PLUGIN.plugins_data_mod_folder_path, _PLUGIN.guid)
-print(package)
+-- Example Output of Package Path:
+-- C:\Program Files (x86)\Steam\steamapps\common\Hades II\Ship\ReturnOfModding\plugins_data\zannc-KeepsakePort\zannc-KeepsakePort
 modutil.mod.Path.Wrap("SetupMap", function(base)
     LoadPackages({Name = package})
     base()

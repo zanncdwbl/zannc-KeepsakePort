@@ -23,9 +23,9 @@ function CreateKeepsake_Thanatos()
 
         -- Always add these, so it SHUTS UP
         ShowInHUD = true,
-        PriorityDisplay = true,
         Ordered = true,
         HUDScale = 0.435,
+        PriorityDisplay = true,
         ChamberThresholds = { 25, 50 },
         HideInRunHistory = true,
         Slot = "Keepsake",
@@ -34,8 +34,7 @@ function CreateKeepsake_Thanatos()
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
 
-        FrameRarities =
-		{
+        FrameRarities = {
 			Common = "Frame_Keepsake_Rank1",
 			Rare = "Frame_Keepsake_Rank2",
 			Epic = "Frame_Keepsake_Rank3",
@@ -49,10 +48,10 @@ function CreateKeepsake_Thanatos()
         },
 
         RarityLevels = {
-            Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 1.5 },
-            Epic = { Multiplier = 2.0 },
-            Heroic = { Multiplier = 2.5 },
+            Common = { Multiplier = config.Thanatos.a_KeepsakeCommon },
+            Rare = { Multiplier = config.Thanatos.b_KeepsakeRare },
+            Epic = { Multiplier = config.Thanatos.c_KeepsakeEpic},
+            Heroic = { Multiplier = config.Thanatos.d_KeepsakeHeroic },
         },
 
         PerfectClearDamageBonus =
@@ -126,7 +125,7 @@ local keepsakeicon_thanatos = sjson.to_object({
 }, IconOrder)
 
 -- Clear Message in room, fixed from default
-function sjson_clearText(data)
+function sjson_clearText_Thanatos(data)
     for _,v in ipairs(data.Texts) do
         if v.Id == 'PerfectClearDamageBonus' then
             v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
@@ -140,7 +139,6 @@ sjson.hook(TraitTextFile, function(data)
     table.insert(data.Texts, keepsake_thanatos)
     table.insert(data.Texts, keepsakerack_thanatos)
     table.insert(data.Texts, signoff_thanatos)
-    print("Thanatos Hook Done")
 end)
 
 -- Insert for Icons
@@ -149,7 +147,5 @@ sjson.hook(GUIAnimationsFile, function (data)
 end)
 
 sjson.hook(HelpTextFile, function (data)
-    return sjson_clearText(data)
+    return sjson_clearText_Thanatos(data)
 end)
-
-print("Thanatos Keepsake Data Complete")

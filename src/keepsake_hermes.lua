@@ -34,8 +34,7 @@ function CreateKeepsake_Hermes()
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
 
-        FrameRarities =
-		{
+        FrameRarities = {
 			Common = "Frame_Keepsake_Rank1",
 			Rare = "Frame_Keepsake_Rank2",
 			Epic = "Frame_Keepsake_Rank3",
@@ -49,10 +48,10 @@ function CreateKeepsake_Hermes()
         },
 
         RarityLevels = {
-            Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 1.1 },
-            Epic = { Multiplier = 1.2 },
-            Heroic = { Multiplier = 1.3 },
+            Common = { Multiplier = config.Hermes.a_KeepsakeCommon },
+            Rare = { Multiplier = config.Hermes.b_KeepsakeRare },
+            Epic = { Multiplier = config.Hermes.c_KeepsakeEpic },
+            Heroic = { Multiplier = config.Hermes.d_KeepsakeHeroic },
         },
 
         FastClearThreshold = 30,
@@ -119,7 +118,7 @@ local keepsakeicon_hermes = sjson.to_object({
 }, IconOrder)
 
 -- Clear Message in room, fixed from default
-function sjson_clearText(data)
+function sjson_clearText_Hermes(data)
     for _,v in ipairs(data.Texts) do
         if v.Id == 'FastClearDamageBonus' then
             v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipFastClearDodgeBonus:P}"
@@ -132,7 +131,6 @@ end
 sjson.hook(TraitTextFile, function(data)
     table.insert(data.Texts, keepsake_hermes)
     table.insert(data.Texts, keepsakerack_hermes)
-    print("Hermes Hook Done")
 end)
 
 -- Insert for Icons
@@ -141,11 +139,8 @@ sjson.hook(GUIAnimationsFile, function (data)
 end)
 
 sjson.hook(HelpTextFile, function (data)
-    return sjson_clearText(data)
+    return sjson_clearText_Hermes(data)
 end)
-
-print("Hermes Keepsake Data Complete")
-
 
 -- =================================================
 --            SJSON for Clear Times

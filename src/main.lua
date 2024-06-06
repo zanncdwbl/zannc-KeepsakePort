@@ -35,20 +35,21 @@ config = chalk.auto 'config.lua'
 public.config = config
 
 local function on_ready()
-    if config.Enabled == false then return end
+    if config.enabled == false then return end
     import_as_fallback(rom.game)
 
     import 'ready.lua'
     import 'sjson.lua'
 
-    if config.EnableThanatos then import 'keepsake_thanatos.lua' end
-    if config.EnableHermes then import 'keepsake_hermes.lua' end
-    if config.EnablePersephone then import 'keepsake_persephone.lua' end
+    if config.Thanatos.enabled then import 'keepsake_thanatos.lua' end
+    if config.Hermes.enabled then import 'keepsake_hermes.lua' end
+    if config.Persephone.enabled then import 'keepsake_persephone.lua' end
 end
 
 local function on_reload()
     if config.Enabled == false then return end
     import_as_fallback(rom.game)
+
     import 'reload.lua'
 end
 

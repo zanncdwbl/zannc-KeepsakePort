@@ -1,5 +1,5 @@
 # KeepsakePort_zannc
-Porting some Keepsakes over from Hades 1 to Hades 2, made with Icons. <br><br>
+Porting Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persephone, Hermes. Now with Icons! <br><br>
 
 Currently Added: <br>
     -- Thanatos Keepsake<br>

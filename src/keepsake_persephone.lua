@@ -33,8 +33,7 @@ function CreateKeepsake_Persephone()
         TraitOrderingValueCache = -1,
         ActiveSlotOffsetIndex =  0,
         
-        FrameRarities =
-		{
+        FrameRarities = {
 			Common = "Frame_Keepsake_Rank1",
 			Rare = "Frame_Keepsake_Rank2",
 			Epic = "Frame_Keepsake_Rank3",
@@ -111,12 +110,9 @@ local keepsakeicon_persephone = sjson.to_object({
 sjson.hook(TraitTextFile, function(data)
     table.insert(data.Texts, keepsakerack_persephone)
     table.insert(data.Texts, signoff_persephone)
-    print("Persephone Hook Done")
 end)
 
 -- Insert for Icons
 sjson.hook(GUIAnimationsFile, function (data)
     table.insert(data.Animations, keepsakeicon_persephone)
 end)
-
-print("Persephone Keepsake Data Complete")
