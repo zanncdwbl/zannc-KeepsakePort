@@ -1,4 +1,5 @@
 from pathlib import Path
+import shutil
 from PyTexturePacker import Packer
 from PIL import Image
 from scipy.spatial import ConvexHull
@@ -7,11 +8,17 @@ import json
 import os
 
 # To use this script, you'll need to pip install scipy and PyTexturePacker in addition to deppth and pillow
+# The directory to recursively search for images in
+SOURCE_DIRECTORY = "img"
 
-SOURCE_DIRECTORY = 'img'            # The directory to recursively search for images in
-BASENAME = 'Keepsakes'              # Filenames created will start with this plus a number
-INCLUDE_HULLS = False               # Change to True if you want hull points computed and added
-PACKAGE_NAME = "zannc-KeepsakePort" # Change to whatever Package name you want
+# Filenames created will start with this plus a number
+BASENAME = ""
+
+# Change to True if you want hull points computed and added
+INCLUDE_HULLS = False      
+
+# Change to whatever Package name you want - must include the plugin guid (aka Author-ModName)
+PACKAGE_NAME = ""
 
 MANIFEST_DIR = 'build/manifest'
 TEXTURES_DIR = 'build/textures/atlases'
@@ -21,6 +28,13 @@ def build_atlases(source_dir, basename, include_hulls=False):
     hulls = {}
     namemap = {}
 
+    if os.path.exists("build"):
+        shutil.rmtree("build")
+
+    if os.path.exists(f'{PACKAGE_NAME}.pkg') or os.path.exists(f'{PACKAGE_NAME}.pkg_manifest'):
+        os.remove(f'{PACKAGE_NAME}.pkg')
+        os.remove(f'{PACKAGE_NAME}.pkg_manifest')
+    
     Path(MANIFEST_DIR).mkdir(parents=True, exist_ok=True)
     Path(TEXTURES_DIR).mkdir(parents=True, exist_ok=True)
 
