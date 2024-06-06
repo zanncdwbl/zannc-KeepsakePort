@@ -41,9 +41,9 @@ local function on_ready()
     import 'ready.lua'
     import 'sjson.lua'
 
-    if config.Thanatos.enabled then import 'keepsake_thanatos.lua' end
-    if config.Hermes.enabled then import 'keepsake_hermes.lua' end
-    if config.Persephone.enabled then import 'keepsake_persephone.lua' end
+    if config.Thanatos.Enabled then import 'keepsake_thanatos.lua' end
+    if config.Hermes.Enabled then import 'keepsake_hermes.lua' end
+    if config.Persephone.Enabled then import 'keepsake_persephone.lua' end
 end
 
 local function on_reload()
