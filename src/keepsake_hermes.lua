@@ -4,7 +4,7 @@
 function CreateKeepsake_Hermes()
     -- Creating Keepsake Order
     table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "FastClearDodgeBonusKeepsake")
-    
+
     -- Creating Gift Data - using 02 to avoid conflict
     game.GiftData.NPC_Hermes_02 = {
         [1] = {
@@ -32,13 +32,13 @@ function CreateKeepsake_Hermes()
         InfoBackingAnimation = "KeepsakeSlotBase",
         RecordCacheOnEquip = true,
         TraitOrderingValueCache = -1,
-        ActiveSlotOffsetIndex =  0,
+        ActiveSlotOffsetIndex = 0,
 
         FrameRarities = {
-			Common = "Frame_Keepsake_Rank1",
-			Rare = "Frame_Keepsake_Rank2",
-			Epic = "Frame_Keepsake_Rank3",
-		},
+            Common = "Frame_Keepsake_Rank1",
+            Rare = "Frame_Keepsake_Rank2",
+            Epic = "Frame_Keepsake_Rank3",
+        },
 
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",
@@ -99,7 +99,8 @@ CreateKeepsake_Hermes()
 local keepsake_hermes = sjson.to_object({
     Id = "FastClearDodgeBonusKeepsake_Tray",
     InheritFrom = "FastClearDodgeBonusKeepsake",
-    Description = "Gain greater {$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}.\n{#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
+    Description =
+    "Gain greater {$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}.\n{#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
 }, Order)
 
 -- In rack description
@@ -107,7 +108,8 @@ local keepsakerack_hermes = sjson.to_object({
     Id = "FastClearDodgeBonusKeepsake",
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Lambent Plume",
-    Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}."
+    Description =
+    "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge} chance and move speed each time you quickly clear an {$Keywords.EncounterAlt}."
 }, Order)
 
 -- Icon JSON data
@@ -119,7 +121,7 @@ local keepsakeicon_hermes = sjson.to_object({
 
 -- Clear Message in room, fixed from default
 function sjson_clearText_Hermes(data)
-    for _,v in ipairs(data.Texts) do
+    for _, v in ipairs(data.Texts) do
         if v.Id == 'FastClearDamageBonus' then
             v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipFastClearDodgeBonus:P}"
             break
@@ -134,14 +136,56 @@ sjson.hook(TraitTextFile, function(data)
 end)
 
 -- Insert for Icons
-sjson.hook(GUIAnimationsFile, function (data)
+sjson.hook(GUIAnimationsFile, function(data)
     table.insert(data.Animations, keepsakeicon_hermes)
 end)
 
-sjson.hook(HelpTextFile, function (data)
+sjson.hook(HelpTextFile, function(data)
     return sjson_clearText_Hermes(data)
 end)
 
 -- =================================================
---            SJSON for Clear Times
+--            Lua for Clear Times
 -- =================================================
+-- Erebus Region
+game.EncounterData.GeneratedF.FastClearThreshold = 25         -- Base Encounters
+game.EncounterData.MiniBossTreant.FastClearThreshold = 35     -- Root Stalker/Weird Plant Boss Encounters
+game.EncounterData.MiniBossFogEmitter.FastClearThreshold = 35 -- Shadow Spiller/Fog Encounters
+game.EncounterData.BossHecate01.FastClearThreshold = 65       -- Hecate Boss Encounters
+
+-- Oceanus Region Stuff
+game.EncounterData.GeneratedG.FastClearThreshold = 40        -- Base Encounters
+game.EncounterData.MiniBossWaterUnit.FastClearThreshold = 50 -- Spinny Boy Encounters
+game.EncounterData.MiniBossCrawler.FastClearThreshold = 65   -- Uh Oh Encounters
+game.EncounterData.BossScylla01.FastClearThreshold = 85      -- Scylla Encounters
+
+-- Asphodel Region from Chronos
+game.EncounterData.GeneratedAnomalyBase.FastClearThreshold = 60 -- Base Encounter
+
+-- Fields Region Cage Stuff -- No Custom timer for Cage Rewards cause its shitty and buggy
+game.EncounterData.GeneratedH.FastClearThreshold = 20              -- Field Cage Encounters which doesnt work
+game.EncounterData.GeneratedH_Passive.FastClearThreshold = 20      -- Field Cage Encounters which doesnt work
+game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 20 -- Field Cage Encounters which doesnt work
+game.EncounterData.MiniBossLamia.FastClearThreshold = 55           -- Lamia/Snake Thing Encounters
+game.EncounterData.MiniBossVampire.FastClearThreshold = 70         -- Vampire Thing Encounters
+game.EncounterData.BossInfestedCerberus01.FastClearThreshold = 100 -- Cerberus Boss Encounters
+
+-- Region Stuff
+game.EncounterData.GeneratedI.FastClearThreshold = 10             -- Base Encounters
+game.EncounterData.GeneratedIChronosIntro.FastClearThreshold = 10 -- Base Encounters
+
+-- Region Stuff
+game.EncounterData.GeneratedN.FastClearThreshold = 12 -- Base Encounters
+
+-- Region Stuff
+game.EncounterData.GeneratedO.FastClearThreshold = 14 -- Base Encounters
+
+-- Region Stuff
+game.EncounterData.GeneratedP.FastClearThreshold = 16 -- Base Encounters
+
+-- IDK
+game.EncounterData.BaseArtemisCombat.FastClearThreshold = 65 -- Artemis Encounters
+game.EncounterData.BaseNemesisCombat.FastClearThreshold = 65 -- Nemesis Encounters cause idk if they will ever remove it
+
+
+-- print(ModUtil.ToString.Deep(game.EncounterData))

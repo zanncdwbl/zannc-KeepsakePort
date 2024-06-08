@@ -4,7 +4,7 @@
 function CreateKeepsake_Thanatos()
     -- Creating Keepsake Order
     table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")
-    
+
     -- Creating Gift Data
     game.GiftData.NPC_Thanatos_01 = {
         [1] = {
@@ -32,13 +32,13 @@ function CreateKeepsake_Thanatos()
         InfoBackingAnimation = "KeepsakeSlotBase",
         RecordCacheOnEquip = true,
         TraitOrderingValueCache = -1,
-        ActiveSlotOffsetIndex =  0,
+        ActiveSlotOffsetIndex = 0,
 
         FrameRarities = {
-			Common = "Frame_Keepsake_Rank1",
-			Rare = "Frame_Keepsake_Rank2",
-			Epic = "Frame_Keepsake_Rank3",
-		},
+            Common = "Frame_Keepsake_Rank1",
+            Rare = "Frame_Keepsake_Rank2",
+            Epic = "Frame_Keepsake_Rank3",
+        },
 
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",
@@ -50,7 +50,7 @@ function CreateKeepsake_Thanatos()
         RarityLevels = {
             Common = { Multiplier = config.Thanatos.a_KeepsakeCommon },
             Rare = { Multiplier = config.Thanatos.b_KeepsakeRare },
-            Epic = { Multiplier = config.Thanatos.c_KeepsakeEpic},
+            Epic = { Multiplier = config.Thanatos.c_KeepsakeEpic },
             Heroic = { Multiplier = config.Thanatos.d_KeepsakeHeroic },
         },
 
@@ -69,8 +69,8 @@ function CreateKeepsake_Thanatos()
         ExtractValues =
         {
             {
-                Key = "PerfectClearDamageBonus", 
-                ExtractAs = "TooltipPerfectClearBonus", 
+                Key = "PerfectClearDamageBonus",
+                ExtractAs = "TooltipPerfectClearBonus",
                 Format = "PercentDelta",
                 DecimalPlaces = 1,
             },
@@ -100,7 +100,8 @@ CreateKeepsake_Thanatos()
 local keepsake_thanatos = sjson.to_object({
     Id = "PerfectClearDamageBonusKeepsake_Tray",
     InheritFrom = "PerfectClearDamageBonusKeepsake",
-    Description = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
+    Description =
+    "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P} {#Prev}"
 }, Order)
 
 -- In rack description
@@ -108,7 +109,8 @@ local keepsakerack_thanatos = sjson.to_object({
     Id = "PerfectClearDamageBonusKeepsake",
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pierced Butterfly",
-    Description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
+    Description =
+    "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}damage each time you clear an {$Keywords.EncounterAlt} without taking damage."
 }, Order)
 
 -- From which Character
@@ -126,7 +128,7 @@ local keepsakeicon_thanatos = sjson.to_object({
 
 -- Clear Message in room, fixed from default
 function sjson_clearText_Thanatos(data)
-    for _,v in ipairs(data.Texts) do
+    for _, v in ipairs(data.Texts) do
         if v.Id == 'PerfectClearDamageBonus' then
             v.DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}"
             break
@@ -142,10 +144,10 @@ sjson.hook(TraitTextFile, function(data)
 end)
 
 -- Insert for Icons
-sjson.hook(GUIAnimationsFile, function (data)
+sjson.hook(GUIAnimationsFile, function(data)
     table.insert(data.Animations, keepsakeicon_thanatos)
 end)
 
-sjson.hook(HelpTextFile, function (data)
+sjson.hook(HelpTextFile, function(data)
     return sjson_clearText_Thanatos(data)
 end)

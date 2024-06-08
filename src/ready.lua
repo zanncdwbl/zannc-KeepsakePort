@@ -5,11 +5,16 @@ local package = rom.path.combine(_PLUGIN.plugins_data_mod_folder_path, _PLUGIN.g
 -- Example Output of Package Path:
 -- C:\Program Files (x86)\Steam\steamapps\common\Hades II\Ship\ReturnOfModding\plugins_data\zannc-KeepsakePort\zannc-KeepsakePort
 modutil.mod.Path.Wrap("SetupMap", function(base)
-    LoadPackages({Name = package})
+    LoadPackages({ Name = package })
     base()
 end)
 
-modutil.mod.Path.Wrap("EndEncounterEffects", function( base, currentRun, currentRoom, currentEncounter )
-    EndEncounterEffects_wrap( base, currentRun, currentRoom, currentEncounter )
+modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentRoom, currentEncounter)
+    EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounter)
     base(currentRun, currentRoom, currentEncounter)
+end)
+
+modutil.mod.Path.Wrap("StartEncounterEffects", function(base, currentRun)
+    StartEncounterEffects_wrap(base, currentRun)
+    base(currentRun)
 end)

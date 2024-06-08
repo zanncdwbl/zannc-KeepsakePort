@@ -1,8 +1,14 @@
 # Changelog
 
 ## [Unreleased]
-Fixed Clear Text being messed up <br>
-Added Config options, now you can customize values of Hermes & Thanatos Keepsake (Be sure to delete your old config)
+Fixed Clear Text being messed up for Thanatos <br>
+Added Config options, now you can customize values of Hermes & Thanatos Keepsake (Be sure to delete your old config) <br>
+Fixed Crash when going into Arachne Combat Encounters <br>
+
+Fixed Crash for Hermes keepsake when going into NPC rooms with no start time <br> 
+Added Custom Clear times per region and minibosses/bosses for Hermes Keepsake <br>
+Fixed Clear Time issues in fields with Hermes (clear time overwriting itself) <br>
+Fixed Hermes Keepsake having a timer even after the encounter ended <br>
 
 ## [1.0.2] - 2024-06-05
 
@@ -22,7 +28,8 @@ Added 3 God Keepsakes from Hades1, Hermes, Thanatos and Persephone
 \-- Orpheus Keepsake (Game is more range based now) <br>
 \-- Maybe Sisyphus, bloated boon pool so it might be easier for it to be viable <br>
 \-- New Keepsakes from New Gods? <br>
-\-- Added Custom Clear times per region and boss
+-- Boons for Hermes <br>
+-- ImGui in general or Config for clear times 
 
 [unreleased]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.2...HEAD
 [1.0.2]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.1...1.0.2
