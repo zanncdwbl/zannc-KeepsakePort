@@ -123,7 +123,7 @@ local signoff_thanatos = sjson.to_object({
 local keepsakeicon_thanatos = sjson.to_object({
     Name = "Pierced_Butterfly",
     InheritFrom = "KeepsakeIcon",
-    FilePath = rom.path.combine('keepsakes\\Pierced_Butterfly')
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Pierced_Butterfly')
 }, IconOrder)
 
 -- Clear Message in room, fixed from default

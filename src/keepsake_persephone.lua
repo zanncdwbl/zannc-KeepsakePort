@@ -4,7 +4,7 @@
 function CreateKeepsake_Persephone()
     -- Creating Keepsake Order
     table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "ChamberStackTrait")
-    
+
     -- Creating Gift Data
     game.GiftData.NPC_Persephone_01 = {
         [1] = {
@@ -31,13 +31,13 @@ function CreateKeepsake_Persephone()
         InfoBackingAnimation = "KeepsakeSlotBase",
         RecordCacheOnEquip = true,
         TraitOrderingValueCache = -1,
-        ActiveSlotOffsetIndex =  0,
-        
+        ActiveSlotOffsetIndex = 0,
+
         FrameRarities = {
-			Common = "Frame_Keepsake_Rank1",
-			Rare = "Frame_Keepsake_Rank2",
-			Epic = "Frame_Keepsake_Rank3",
-		},
+            Common = "Frame_Keepsake_Rank1",
+            Rare = "Frame_Keepsake_Rank2",
+            Epic = "Frame_Keepsake_Rank3",
+        },
 
         CustomRarityLevels = {
             "TraitLevel_Keepsake1",
@@ -45,20 +45,20 @@ function CreateKeepsake_Persephone()
             "TraitLevel_Keepsake3",
             "TraitLevel_Keepsake4",
         },
-        
+
         RarityLevels = {
             Common = { Multiplier = 1.0 },
-            Rare = { Multiplier = 5/6 },
-            Epic = { Multiplier = 4/6 },
+            Rare = { Multiplier = 5 / 6 },
+            Epic = { Multiplier = 4 / 6 },
         },
-        
-        RoomsPerUpgrade = 
-        { 
-            Amount = {BaseValue = 6},
+
+        RoomsPerUpgrade =
+        {
+            Amount = { BaseValue = 6 },
             TraitStacks = 1, -- Adding cause of TraitLogic in h2
-            ReportValues = 
-            { 
-                ReportedRoomsPerUpgrade = "Amount" 
+            ReportValues =
+            {
+                ReportedRoomsPerUpgrade = "Amount"
             },
         },
         CurrentRoom = 0,
@@ -69,7 +69,7 @@ function CreateKeepsake_Persephone()
                 ExtractAs = "TooltipRoomInterval",
             }
         },
-        
+
         SignOffData =
         {
             {
@@ -90,7 +90,8 @@ local keepsakerack_persephone = sjson.to_object({
     Id = "ChamberStackTrait",
     InheritFrom = "BaseBoonMultiline",
     DisplayName = "Pom Blossom",
-    Description = "After every {#AltUpgradeFormat}{$TooltipData.ExtractData.TooltipRoomInterval} {#Prev}{$Keywords.EncounterPlural}, gain {#UseGiftPointFormat}+1 Lv.{!Icons.Pom} {#Prev}{#ItalicFormat}(a random {$Keywords.GodBoon} grows stronger){#Prev}"
+    Description =
+    "After every {#AltUpgradeFormat}{$TooltipData.ExtractData.TooltipRoomInterval} {#Prev}{$Keywords.EncounterPlural}, gain {#UseGiftPointFormat}+1 Lv.{!Icons.Pom} {#Prev}{#ItalicFormat}(a random {$Keywords.GodBoon} grows stronger){#Prev}"
 }, Order)
 
 -- From which Character
@@ -103,7 +104,7 @@ local signoff_persephone = sjson.to_object({
 local keepsakeicon_persephone = sjson.to_object({
     Name = "Pom_Blossom",
     InheritFrom = "KeepsakeIcon",
-    FilePath = rom.path.combine('keepsakes/Pom_Blossom')
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Pom_Blossom')
 }, IconOrder)
 
 -- Inserting into SJSON
@@ -113,6 +114,6 @@ sjson.hook(TraitTextFile, function(data)
 end)
 
 -- Insert for Icons
-sjson.hook(GUIAnimationsFile, function (data)
+sjson.hook(GUIAnimationsFile, function(data)
     table.insert(data.Animations, keepsakeicon_persephone)
 end)

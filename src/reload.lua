@@ -7,14 +7,16 @@ function EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounte
             currentEncounter.PlayerTookDamage = game.CurrentRun.CurrentRoom.Encounter.PlayerTookDamage
         end
 
-        -- For Hermes in fields, very crude but hopefully works.
+        -- For Hermes in fields, very crude but hopefully works, makes it so if encounter has threshold
+        -- calculate the clear time, else set clear time to arbritrary high number to fail encounter automatically (done to combat NPC rooms)
         if currentEncounter.FastClearThreshold then
             for k, encounter in pairs(CurrentRun.CurrentRoom.ActiveEncounters) do
                 -- Check clear time, used later in original function
                 currentEncounter.ClearTime = game._worldTime - encounter.StartTime
             end
         else
-            currentEncounter.ClearTime = 200 -- If no threshold, either its undefined, broken, or NPC/NonCombat room, set clear time to 200 to auto fail
+            -- If no threshold, either its undefined, broken, or NPC/NonCombat room, set clear time to 200 to auto fail hermes
+            currentEncounter.ClearTime = 200
         end
     end
 end
@@ -28,15 +30,15 @@ function StartEncounterEffects_wrap(base, currentRun)
     end
 
     -- Remove this when publishing, don't need it.
-    for k, traitData in pairs(currentRun.Hero.Traits) do
-        if traitData.FastClearDodgeBonus then
-            if currentRun.CurrentRoom.Encounter.FastClearThreshold then
-                print("Current Room: " .. currentRun.CurrentRoom.Encounter.Name)
-                print("Time Clear Threshold: " .. currentRun.CurrentRoom.Encounter.FastClearThreshold .. " seconds\n")
-            else
-                print("Current Room: " ..
-                    currentRun.CurrentRoom.Encounter.Name .. ", has no custom threshold or is undefined")
-            end
-        end
-    end
+    -- for k, traitData in pairs(currentRun.Hero.Traits) do
+    --     if traitData.FastClearDodgeBonus then
+    --         if currentRun.CurrentRoom.Encounter.FastClearThreshold then
+    --             print("Current Room: " .. currentRun.CurrentRoom.Encounter.Name)
+    --             print("Time Clear Threshold: " .. currentRun.CurrentRoom.Encounter.FastClearThreshold .. " seconds\n")
+    --         else
+    --             print("Current Room: " ..
+    --                 currentRun.CurrentRoom.Encounter.Name .. ", has no custom threshold or is undefined")
+    --         end
+    --     end
+    -- end
 end

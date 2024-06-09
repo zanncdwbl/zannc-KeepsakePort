@@ -116,7 +116,7 @@ local keepsakerack_hermes = sjson.to_object({
 local keepsakeicon_hermes = sjson.to_object({
     Name = "Lambent_Plume",
     InheritFrom = "KeepsakeIcon",
-    FilePath = rom.path.combine('keepsakes/Lambent_Plume')
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Lambent_Plume')
 }, IconOrder)
 
 -- Clear Message in room, fixed from default
@@ -147,13 +147,16 @@ end)
 -- =================================================
 --            Lua for Clear Times
 -- =================================================
+
+--               Underground Regions
+-- =================================================
 -- Erebus Region
 game.EncounterData.GeneratedF.FastClearThreshold = 25         -- Base Encounters
 game.EncounterData.MiniBossTreant.FastClearThreshold = 35     -- Root Stalker/Weird Plant Boss Encounters
 game.EncounterData.MiniBossFogEmitter.FastClearThreshold = 35 -- Shadow Spiller/Fog Encounters
 game.EncounterData.BossHecate01.FastClearThreshold = 65       -- Hecate Boss Encounters
 
--- Oceanus Region Stuff
+-- Oceanus Region
 game.EncounterData.GeneratedG.FastClearThreshold = 40        -- Base Encounters
 game.EncounterData.MiniBossWaterUnit.FastClearThreshold = 50 -- Spinny Boy Encounters
 game.EncounterData.MiniBossCrawler.FastClearThreshold = 65   -- Uh Oh Encounters
@@ -162,29 +165,37 @@ game.EncounterData.BossScylla01.FastClearThreshold = 85      -- Scylla Encounter
 -- Asphodel Region from Chronos
 game.EncounterData.GeneratedAnomalyBase.FastClearThreshold = 60 -- Base Encounter
 
--- Fields Region Cage Stuff -- No Custom timer for Cage Rewards cause its shitty and buggy
-game.EncounterData.GeneratedH_Passive.FastClearThreshold = 30      -- Field Cage Encounters
-game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 20 -- Small Field Cage Encounters
+-- Fields Region
+game.EncounterData.GeneratedH_Passive.FastClearThreshold = 40      -- Field Cage Encounters
+game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 30 -- Small Field Cage Encounters
 game.EncounterData.MiniBossLamia.FastClearThreshold = 55           -- Lamia/Snake Thing Encounters
 game.EncounterData.MiniBossVampire.FastClearThreshold = 70         -- Vampire Thing Encounters
 game.EncounterData.BossInfestedCerberus01.FastClearThreshold = 100 -- Cerberus Boss Encounters
 
--- Region Stuff
-game.EncounterData.GeneratedI.FastClearThreshold = 10             -- Base Encounters
-game.EncounterData.GeneratedIChronosIntro.FastClearThreshold = 10 -- Base Encounters
+-- Tartarus/House Of Hades Region
+game.EncounterData.GeneratedI.FastClearThreshold = 25            -- Base Encounters
+game.EncounterData.MiniBossGoldElemental.FastClearThreshold = 35 -- GoldElemental/Weird Rat Thing idk Encounters
+game.EncounterData.BossChronos01.FastClearThreshold = 120        -- Chronos Boss Encounters
 
--- Region Stuff
-game.EncounterData.GeneratedN.FastClearThreshold = 12 -- Base Encounters
+--                  Surface Regions
+-- =================================================
+-- City of Ephyra Region
+game.EncounterData.GeneratedN.FastClearThreshold = 35        -- Base & Hub Encounters
+game.EncounterData.GeneratedN_Bigger.FastClearThreshold = 45 -- Big? Base Encounters
+game.EncounterData.BossPolyphemus01.FastClearThreshold = 75  -- Polyphemus/Cyclops Boss Encounters
 
--- Region Stuff
-game.EncounterData.GeneratedO.FastClearThreshold = 14 -- Base Encounters
+-- Rift of Thessaly Region
+game.EncounterData.GeneratedO_Intro01.FastClearThreshold = 20 -- Intro Encounters
+game.EncounterData.GeneratedO.FastClearThreshold = 40         -- Base Encounters
+game.EncounterData.BossEris01.FastClearThreshold = 90         -- Eris Boss Encounters
 
--- Region Stuff
-game.EncounterData.GeneratedP.FastClearThreshold = 16 -- Base Encounters
+-- Undone Region Stuff
+game.EncounterData.GeneratedP.FastClearThreshold = 0
 
--- IDK
-game.EncounterData.BaseArtemisCombat.FastClearThreshold = 65 -- Artemis Encounters
-game.EncounterData.BaseNemesisCombat.FastClearThreshold = 65 -- Nemesis Encounters cause idk if they will ever remove it
-
+-- NPC encounters
+game.EncounterData.BaseArtemisCombat.FastClearThreshold = 65  -- Artemis Encounters
+game.EncounterData.BaseNemesisCombat.FastClearThreshold = 65  -- Nemesis Encounters cause idk if they will ever remove it
+game.EncounterData.BaseHeraclesCombat.FastClearThreshold = 65 -- Heracles Encounters
+game.EncounterData.BaseIcarusCombat.FastClearThreshold = 65   -- Icarus Encounters
 
 -- print(ModUtil.ToString.Deep(game.EncounterData))

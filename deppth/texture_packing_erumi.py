@@ -11,19 +11,16 @@ import os
 # The directory to recursively search for images in
 SOURCE_DIRECTORY = "img"
 
-# Filenames created will start with this plus a number
-BASENAME = ""
-
 # Change to True if you want hull points computed and added
 INCLUDE_HULLS = False      
 
 # Change to whatever Package name you want - must include the plugin guid (aka Author-ModName)
-PACKAGE_NAME = ""
+PACKAGE_NAME = "zannc-KeepsakePort"
 
 MANIFEST_DIR = 'build/manifest'
 TEXTURES_DIR = 'build/textures/atlases'
 
-def build_atlases(source_dir, basename, include_hulls=False):
+def build_atlases(source_dir, package_name, include_hulls=False):
     files = find_files(source_dir)
     hulls = {}
     namemap = {}
@@ -49,21 +46,21 @@ def build_atlases(source_dir, basename, include_hulls=False):
     # Perfom the packing. This will create the spritesheets and primitive atlases, which we'll need to turn to usable ones
     packer = Packer.create(max_width=2880, max_height=2880, bg_color=0x00000000, atlas_format='json', 
         enable_rotated=False, trim_mode=1, border_padding=0, shape_padding=0)
-    packer.pack(files, f'{basename}%d')
+    packer.pack(files, f'{package_name}%d')
 
     # Now, loop through the atlases made and transform them to be the right format
     index = 0
     atlases = []
-    while os.path.exists(f'{basename}{index}.json'):
-        atlases.append(transform_atlas(f'{basename}{index}.json', namemap, hulls, source_dir))
-        os.remove(f'{basename}{index}.json')
+    while os.path.exists(f'{package_name}{index}.json'):
+        atlases.append(transform_atlas(f'{package_name}{index}.json', namemap, hulls, source_dir))
+        os.remove(f'{package_name}{index}.json')
         index += 1
 
-    for file in Path('.').glob(f'{basename}*.png'):
+    for file in Path('.').glob(f'{package_name}*.png'):
         destpng = os.path.join(TEXTURES_DIR, file.name)
         os.rename(file, destpng)
 
-    for file in Path('.').glob(f'{basename}*.atlas.json'):
+    for file in Path('.').glob(f'{package_name}*.atlas.json'):
         destatlas = os.path.join(MANIFEST_DIR, file.name)
         os.rename(file, destatlas)
 
@@ -152,4 +149,4 @@ def transform_hull(hull, topLeft, size):
 
     return new_hull
 
-build_atlases(SOURCE_DIRECTORY, BASENAME, INCLUDE_HULLS)
+build_atlases(SOURCE_DIRECTORY, PACKAGE_NAME, INCLUDE_HULLS)
