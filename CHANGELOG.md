@@ -4,11 +4,13 @@
 Fixed Clear Text being messed up for Thanatos <br>
 Added Config options, now you can customize values of Hermes & Thanatos Keepsake (Be sure to delete your old config) <br>
 Fixed Crash when going into Arachne Combat Encounters <br>
-
 Fixed Crash for Hermes keepsake when going into NPC rooms with no start time <br> 
+
 Added Custom Clear times per region and minibosses/bosses for Hermes Keepsake <br>
-Fixed Clear Time issues in fields with Hermes (clear time overwriting itself) <br>
-Fixed Hermes Keepsake having a timer even after the encounter ended <br>
+
+## Known Issues
+Clear Time issues in fields with Hermes - Clear time overwriting itself, kinda, it's weird. <br>
+Fixed Hermes Keepsake having a timer even after the encounter ended
 
 ## [1.0.2] - 2024-06-05
 

@@ -6,14 +6,28 @@ function EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounte
         if game.CurrentRun.CurrentRoom.Encounter.PlayerTookDamage ~= nil then
             currentEncounter.PlayerTookDamage = game.CurrentRun.CurrentRoom.Encounter.PlayerTookDamage
         end
-        -- For Hermes in fields
-        if currentEncounter.EncounterType ~= "NonCombat" then -- Doesn't work if nemesis exists, sigh.
-            currentEncounter.ClearTime = game._worldTime - game.CurrentRun.CurrentRoom.Encounter.StartTime
+
+        -- For Hermes in fields, very crude but hopefully works.
+        if currentEncounter.FastClearThreshold then
+            for k, encounter in pairs(CurrentRun.CurrentRoom.ActiveEncounters) do
+                -- Check clear time, used later in original function
+                currentEncounter.ClearTime = game._worldTime - encounter.StartTime
+            end
+        else
+            currentEncounter.ClearTime = 200 -- If no threshold, either its undefined, broken, or NPC/NonCombat room, set clear time to 200 to auto fail
         end
     end
 end
 
 function StartEncounterEffects_wrap(base, currentRun)
+    -- Assign a start counter to all active encounters, specifically for Hermes boon
+    if game.CurrentRun.CurrentRoom.ActiveEncounters ~= nil then
+        for k, encounter in pairs(CurrentRun.CurrentRoom.ActiveEncounters) do
+            encounter.StartTime = game._worldTime
+        end
+    end
+
+    -- Remove this when publishing, don't need it.
     for k, traitData in pairs(currentRun.Hero.Traits) do
         if traitData.FastClearDodgeBonus then
             if currentRun.CurrentRoom.Encounter.FastClearThreshold then

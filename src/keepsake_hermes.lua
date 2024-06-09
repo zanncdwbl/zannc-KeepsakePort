@@ -163,9 +163,8 @@ game.EncounterData.BossScylla01.FastClearThreshold = 85      -- Scylla Encounter
 game.EncounterData.GeneratedAnomalyBase.FastClearThreshold = 60 -- Base Encounter
 
 -- Fields Region Cage Stuff -- No Custom timer for Cage Rewards cause its shitty and buggy
-game.EncounterData.GeneratedH.FastClearThreshold = 20              -- Field Cage Encounters which doesnt work
-game.EncounterData.GeneratedH_Passive.FastClearThreshold = 20      -- Field Cage Encounters which doesnt work
-game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 20 -- Field Cage Encounters which doesnt work
+game.EncounterData.GeneratedH_Passive.FastClearThreshold = 30      -- Field Cage Encounters
+game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 20 -- Small Field Cage Encounters
 game.EncounterData.MiniBossLamia.FastClearThreshold = 55           -- Lamia/Snake Thing Encounters
 game.EncounterData.MiniBossVampire.FastClearThreshold = 70         -- Vampire Thing Encounters
 game.EncounterData.BossInfestedCerberus01.FastClearThreshold = 100 -- Cerberus Boss Encounters
