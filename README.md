@@ -17,4 +17,3 @@ Porting Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persep
     -- Orpheus Keepsake (Game is more range based now)
     -- Maybe Sisyphus, bloated boon pool so it might be easier for it to be viable
     -- New Keepsakes from New Gods - Nike etc
-    -- More Config Options (eg dmg/dodge bonus)

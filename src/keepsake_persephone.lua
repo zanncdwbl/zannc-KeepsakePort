@@ -50,6 +50,7 @@ function CreateKeepsake_Persephone()
             Common = { Multiplier = 1.0 },
             Rare = { Multiplier = 5 / 6 },
             Epic = { Multiplier = 4 / 6 },
+            Heroic = { Multiplier = 3 / 6 },
         },
 
         RoomsPerUpgrade =
