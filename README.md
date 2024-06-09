@@ -7,7 +7,7 @@ Currently Added: <br>
     -- Hermes Keepsake <br><br>
     -- Configuration options for Thanatos and Hermes Bonuses!
 
-Current issues: <br>
+### Current issues:
     -- Maybe change the keepsake effect for Thanatos <br>
     -- Clear Time issues in fields with Hermes - Clear time overwriting itself, kinda, it's weird. <br>
     -- Fixed Hermes Keepsake having a timer even after the encounter ended <br>
