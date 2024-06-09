@@ -4,8 +4,7 @@ Porting Keepsakes over from Hades 1 to Hades 2. Currently added Thanatos, Persep
 Currently Added: <br>
     -- Thanatos Keepsake<br>
     -- Persephone Keepsake<br>
-    -- Hermes Keepsake <br>
-
+    -- Hermes Keepsake <br><br>
     -- Configuration options for Thanatos and Hermes Bonuses!
 
 Current issues: <br>
