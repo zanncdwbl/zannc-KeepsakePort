@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+Added Persephone Level 4
 
 ## [2.0.0] - 2024-06-09
 
