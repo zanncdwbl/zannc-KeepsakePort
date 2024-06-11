@@ -105,7 +105,7 @@ local signoff_persephone = sjson.to_object({
 local keepsakeicon_persephone = sjson.to_object({
     Name = "Pom_Blossom",
     InheritFrom = "KeepsakeIcon",
-    FilePath = rom.path.combine(_PLUGIN.guid, 'Pom_Blossom')
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Icons\\Pom_Blossom')
 }, IconOrder)
 
 -- Inserting into SJSON

@@ -116,7 +116,7 @@ local keepsakerack_hermes = sjson.to_object({
 local keepsakeicon_hermes = sjson.to_object({
     Name = "Lambent_Plume",
     InheritFrom = "KeepsakeIcon",
-    FilePath = rom.path.combine(_PLUGIN.guid, 'Lambent_Plume')
+    FilePath = rom.path.combine(_PLUGIN.guid, 'Icons\\Lambent_Plume')
 }, IconOrder)
 
 -- Clear Message in room, fixed from default
