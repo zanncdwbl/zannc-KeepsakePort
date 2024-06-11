@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [2.0.1] - 2024-06-10
+
 Added Persephone Level 4
 
 ## [2.0.0] - 2024-06-09
@@ -41,7 +44,8 @@ Added 3 God Keepsakes from Hades1, Hermes, Thanatos and Persephone
 \-- Boons for Hermes <br>
 \-- ImGui in general or Config for clear times 
 
-[unreleased]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/2.0.0...HEAD
+[unreleased]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.2...2.0.0
 [1.0.2]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/zanncdwbl/zannc-KeepsakePort/compare/1.0.0...1.0.1
