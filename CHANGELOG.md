@@ -17,12 +17,6 @@ Fixed Crash for Hermes keepsake when going into NPC rooms with no start time <br
 
 Changed Path to icons to be GUID
 
-## Known Issues
-
-Clear Time issues in fields with Hermes - Clear time overwriting itself, kinda, it's weird. <br>
-Fixed Hermes Keepsake having a timer even after the encounter ended <br>
-Not talking to Icarus doesn't mark the end of the encounter? Why? I don't know.
-
 ## [1.0.2] - 2024-06-05
 
 Added Icons (woo!) <br>
