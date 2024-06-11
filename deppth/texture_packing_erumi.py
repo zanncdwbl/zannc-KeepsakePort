@@ -43,7 +43,7 @@ def build_atlases(source_dir, package_name, include_hulls=False):
             hulls[filename.name] = []
         namemap[filename.name] = str(filename)
 
-    # Perfom the packing. This will create the spritesheets and primitive atlases, which we'll need to turn to usable ones
+    # Perform the packing. This will create the spritesheets and primitive atlases, which we'll need to turn to usable ones
     packer = Packer.create(max_width=2880, max_height=2880, bg_color=0x00000000, atlas_format='json', 
         enable_rotated=False, trim_mode=1, border_padding=0, shape_padding=0)
     packer.pack(files, f'{package_name}%d')
@@ -51,8 +51,9 @@ def build_atlases(source_dir, package_name, include_hulls=False):
     # Now, loop through the atlases made and transform them to be the right format
     index = 0
     atlases = []
+    manifest_paths = []
     while os.path.exists(f'{package_name}{index}.json'):
-        atlases.append(transform_atlas(f'{package_name}{index}.json', namemap, hulls, source_dir))
+        atlases.append(transform_atlas(f'{package_name}{index}.json', namemap, hulls, source_dir, manifest_paths))
         os.remove(f'{package_name}{index}.json')
         index += 1
 
@@ -66,6 +67,10 @@ def build_atlases(source_dir, package_name, include_hulls=False):
 
     # Execute deppth command without needing to do it manually
     os.system(f'deppth pk -s build -t {PACKAGE_NAME}.pkg')
+
+    print("\nManifest Paths - Use in Codebase:")
+    for path in manifest_paths:
+        print(path, "\n")
 
 def get_hull_points(path):
     im = Image.open(path)
@@ -97,7 +102,7 @@ def find_files(source_dir):
         file_list.append(path)
     return file_list
 
-def transform_atlas(filename, namemap, hulls, source_dir):
+def transform_atlas(filename, namemap, hulls, source_dir, manifest_paths):
     with open(filename) as f:
         ptp_atlas = json.load(f)
 
@@ -113,7 +118,7 @@ def transform_atlas(filename, namemap, hulls, source_dir):
         frame = frames[texture_name]
         subatlas = {}
         subatlas['name'] = os.path.join(PACKAGE_NAME, os.path.relpath(namemap[texture_name], source_dir)).split(".png")[0] # Split from .png in the name
-        print("\nPrinting Manifest Paths to use for code:", subatlas['name'], "\n")
+        manifest_paths.append(subatlas['name'])
         subatlas['topLeft'] = {'x': frame['spriteSourceSize']['x'], 'y': frame['spriteSourceSize']['y']}
         subatlas['originalSize'] = {'x': frame['sourceSize']['w'], 'y': frame['sourceSize']['h']}
         subatlas['rect'] = {
