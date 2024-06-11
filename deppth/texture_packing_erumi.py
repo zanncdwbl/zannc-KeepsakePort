@@ -112,7 +112,8 @@ def transform_atlas(filename, namemap, hulls, source_dir):
     for texture_name in frames:
         frame = frames[texture_name]
         subatlas = {}
-        subatlas['name'] = os.path.relpath(namemap[texture_name], source_dir).split(".png")[0] # Split from .png in the name
+        subatlas['name'] = os.path.join(PACKAGE_NAME, os.path.relpath(namemap[texture_name], source_dir)).split(".png")[0] # Split from .png in the name
+        print("\nPrinting Manifest Paths to use for code:", subatlas['name'], "\n")
         subatlas['topLeft'] = {'x': frame['spriteSourceSize']['x'], 'y': frame['spriteSourceSize']['y']}
         subatlas['originalSize'] = {'x': frame['sourceSize']['w'], 'y': frame['sourceSize']['h']}
         subatlas['rect'] = {
